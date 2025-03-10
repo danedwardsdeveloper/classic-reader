@@ -1,4 +1,5 @@
 import ChapterList from '@/components/ChapterList'
+import Footer from '@/components/Footer'
 import Menu from '@/components/Menu'
 import { getAllBooks, getBookBySlug } from '@/library/books'
 import type { Metadata } from 'next'
@@ -32,9 +33,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
 	return (
 		<>
-			<Menu author={bookData.author} />
-			<h1>{bookData.title}</h1>
-			<ChapterList book={bookData} />
+			<div className="flex-1 mb-32 md:mb-80 max-w-prose w-full mx-auto">
+				<div className="flex flex-col w-full">
+					<Menu author={bookData.author} />
+					<h1>{bookData.title}</h1>
+					<ChapterList book={bookData} />
+				</div>
+			</div>
+			<Footer currentBook={bookData} />
 		</>
 	)
 }
