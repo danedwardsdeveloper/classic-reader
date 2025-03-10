@@ -1,5 +1,6 @@
 import { UiProvider } from '@/providers/ui'
+import type { ReactNode } from 'react'
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  return <UiProvider>{children}</UiProvider>
+export default function Providers({ children }: { children: ReactNode }) {
+	return <UiProvider>{children}</UiProvider>
 }
