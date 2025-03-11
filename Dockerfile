@@ -19,6 +19,6 @@ RUN pnpm prune --prod
 FROM base
 COPY --from=build /app/.next/standalone /app
 COPY --from=build /app/.next/static /app/.next/static
-COPY --from=build /app/public ./public
+# COPY --from=build /app/public ./public
 EXPOSE 3000
 CMD [ "node", "server.js" ]

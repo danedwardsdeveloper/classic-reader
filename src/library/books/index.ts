@@ -3,11 +3,6 @@ import path from 'node:path'
 import type { Book } from '@/types'
 import logger from '../logger'
 
-export const bookSlugs = {
-	prideAndPrejudice: 'pride-and-prejudice',
-	dracula: 'dracula',
-} as const
-
 let allBooksCache: Book[] | null = null
 
 export async function getAllBooks(): Promise<Book[]> {
@@ -50,7 +45,7 @@ export async function getBookBySlug(slug: string): Promise<Book | null> {
 		const books = await getAllBooks()
 
 		for (const book of books) {
-			if (book.slug != null) {
+			if (book.slug != null && book.slug !== undefined) {
 				getBooksBySlugsCache[book.slug] = book
 			}
 		}

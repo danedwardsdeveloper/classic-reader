@@ -2,34 +2,34 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
 	output: 'standalone',
-	async redirects() {
-		return [
-			{
-				// Redirect from www.
-				source: '/:path*',
-				has: [
-					{
-						type: 'host',
-						value: 'www.my-site.co.uk',
-					},
-				],
-				destination: 'https://my-site.co.uk/:path*',
-				permanent: true,
-			},
-			{
-				// Redirect from Fly.io site to custom domain
-				source: '/:path*',
-				has: [
-					{
-						type: 'host',
-						value: 'my-site.fly.dev',
-					},
-				],
-				destination: 'https://my-site.co.uk/:path*',
-				permanent: true,
-			},
-		]
-	},
+	// async redirects() {
+	// 	return [
+	// 		{
+	// 			// Redirect from www.
+	// 			source: '/:path*',
+	// 			has: [
+	// 				{
+	// 					type: 'host',
+	// 					value: 'www.my-site.co.uk',
+	// 				},
+	// 			],
+	// 			destination: 'https://my-site.co.uk/:path*',
+	// 			permanent: true,
+	// 		},
+	// 		{
+	// 			// Redirect from Fly.io site to custom domain
+	// 			source: '/:path*',
+	// 			has: [
+	// 				{
+	// 					type: 'host',
+	// 					value: 'my-site.fly.dev',
+	// 				},
+	// 			],
+	// 			destination: 'https://my-site.co.uk/:path*',
+	// 			permanent: true,
+	// 		},
+	// 	]
+	// },
 	async headers() {
 		return [
 			{

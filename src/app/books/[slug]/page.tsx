@@ -33,12 +33,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
 	return (
 		<>
-			<div className="flex-1 mb-32 md:mb-80 max-w-prose w-full mx-auto">
-				<div className="flex flex-col w-full">
-					<Menu author={bookData.author} />
-					<h1>{bookData.title}</h1>
-					<ChapterList book={bookData} />
-				</div>
+			<Menu book={bookData} />
+			<div className="flex-1 flex flex-col  max-w-prose w-full mx-auto">
+				<ChapterList book={bookData} />
 			</div>
 			<Footer currentBook={bookData} />
 		</>

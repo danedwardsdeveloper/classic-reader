@@ -1,31 +1,14 @@
 'use client'
-
+import { useLocalStorage } from '@/providers/localStorage'
 import type { Book } from '@/types'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import Spinner from './Spinner'
 
 export default function ChapterList({ book }: { book: Book }) {
-	const [checkedChapters, setCheckedChapters] = useState<Record<number, boolean>>({})
+	const { isLoading, getBookChapters, toggleChapter } = useLocalStorage()
+	const checkedChapters = getBookChapters(book.slug)
 
-	useEffect(() => {
-		const storedCheckedChapters = localStorage.getItem(`book-${book.slug}-chapters`)
-		if (storedCheckedChapters) {
-			setCheckedChapters(JSON.parse(storedCheckedChapters))
-		}
-	}, [book.slug])
-
-	useEffect(() => {
-		if (Object.keys(checkedChapters).length > 0) {
-			localStorage.setItem(`book-${book.slug}-chapters`, JSON.stringify(checkedChapters))
-		}
-	}, [checkedChapters, book.slug])
-
-	const handleCheckboxChange = (chapterIndex: number) => {
-		setCheckedChapters((prev) => ({
-			...prev,
-			[chapterIndex]: !prev[chapterIndex],
-		}))
-	}
+	if (isLoading) return <Spinner />
 
 	return (
 		<ul className="flex flex-col gap-y-6">
@@ -34,7 +17,7 @@ export default function ChapterList({ book }: { book: Book }) {
 					<input
 						type="checkbox"
 						checked={!!checkedChapters[index]}
-						onChange={() => handleCheckboxChange(index)}
+						onChange={() => toggleChapter(book.slug, index)}
 						className="size-6 bg-gray-100 border-gray-300 rounded focus:ring-2 transition duration-300 text-blue-600 focus:ring-orange-400 hover:bg-blue-200"
 						aria-label={`Mark Chapter ${index + 1} as read`}
 					/>

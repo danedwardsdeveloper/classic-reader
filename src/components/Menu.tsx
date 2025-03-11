@@ -1,17 +1,20 @@
+import type { Book } from '@/types'
 import Link from 'next/link'
 
-export default function Menu({ bookName, author }: { bookName?: string; author?: string }) {
+export default function Menu({ book }: { book?: Book }) {
 	return (
-		<nav className="w-full">
-			<ul className="w-full grid grid-cols-2 md:grid-cols-3 mb-12">
-				<li className="col-span-2 md:col-span-1 mb-8 md:mb-0">
-					<Link href="/" className="link text-xl">
-						Classic Reader
+		<nav className="w-full flex flex-col mb-16">
+			<Link href="/" className="link text-xl">
+				Classic Reader
+			</Link>
+			{book && (
+				<div className="w-full flex flex-col gap-y-2 md:flex-row justify-between mt-10">
+					<Link href={`/books/${book.slug}`} className="text-lg link">
+						{book.title.toUpperCase()}
 					</Link>
-				</li>
-				{bookName && <li className="col-span-1 flex md:justify-center">{bookName}</li>}
-				{author && <li className="col-span-1 flex justify-end">{author}</li>}
-			</ul>
+					<span className="text-lg text-zinc-600">{book.author.toUpperCase()}</span>
+				</div>
+			)}
 		</nav>
 	)
 }

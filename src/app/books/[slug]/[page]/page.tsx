@@ -1,6 +1,8 @@
 import ChapterNavigation from '@/components/ChapterNavigation'
+import Footer from '@/components/Footer'
 import Menu from '@/components/Menu'
 import { getAllBooks, getBookBySlug } from '@/library/books'
+import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata } from 'next'
 
 interface Params {
@@ -31,6 +33,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 	return {
 		title: `Chapter ${page} | ${bookData.title} by ${bookData.author}`,
+		description: `Read chapter ${page} of ${bookData.title} by ${bookData.author} on Classic Reader - a simple website for reading classic books for free.`,
+		alternates: {
+			canonical: `${dynamicBaseURL}/books/${bookData.slug}/${page}`,
+		},
 	}
 }
 
@@ -42,17 +48,19 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
 	return (
 		<>
-			<Menu author={bookData.author} bookName={bookData.title} />
+			<Menu book={bookData} />
 
 			<h1>Chapter {currentPage}</h1>
 			<div className="flex flex-col gap-y-8 max-w-prose text-lg">
-				{bookData.chapters[currentPage - 1].map((paragraph) => (
-					<p key={paragraph} className="leading-9 md:text-justify">
+				{bookData.chapters[currentPage - 1].map((paragraph, index) => (
+					// Handle deliberate repeated lines
+					<p key={`${paragraph.slice(0, 10)}-${index}`} className="leading-9 md:text-justify">
 						{paragraph}
 					</p>
 				))}
 			</div>
 			<ChapterNavigation bookData={bookData} currentPage={currentPage} />
+			<Footer currentBook={bookData} />
 		</>
 	)
 }

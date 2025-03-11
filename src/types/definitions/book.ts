@@ -1,7 +1,7 @@
-import type { bookSlugs } from '@/library/books'
+import type { bookSlugs } from '@/library/constants'
 
 export interface Book {
-	slug: BookSlug
+	slug: BookSlug | 'change or error'
 	title: string
 	author: string
 	chapters: Array<Array<string>>

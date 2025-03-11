@@ -28,7 +28,7 @@ export default function RootLayout({
 		<html lang="en-GB" suppressHydrationWarning>
 			<body className=" bg-slate-50">
 				<Providers>
-					<div className="min-h-screen flex flex-col w-full max-w-4xl mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
+					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
 				</Providers>
 			</body>
 		</html>
