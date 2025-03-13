@@ -1,6 +1,5 @@
 import ChapterNavigation from '@/components/ChapterNavigation'
 import Footer from '@/components/Footer'
-import Menu from '@/components/Menu'
 import { getAllBooks, getBookBySlug } from '@/library/books'
 import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import { getAuthorSlugByDisplay } from '@/library/getAuthorSlug'
@@ -56,8 +55,6 @@ export default async function Page({ params }: { params: Params }) {
 
 	return (
 		<>
-			<Menu />
-
 			<h1>Chapter {currentPage}</h1>
 			<div className="flex flex-col gap-y-8 max-w-prose text-lg">
 				{bookData.chapters[currentPage - 1].map((paragraph, index) => (

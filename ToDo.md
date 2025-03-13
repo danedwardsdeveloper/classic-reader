@@ -1,4 +1,10 @@
--  Generate all static params for novels
+## Tonight
+
+-  Generate all static params for novels and get back up to 1,000 static pages
+
+## Later
+
+-  Split long chapters into multiple pages
 -  Add chapter name handling
 -  Add chapter names to the URL if available
 -  Add poem handling
@@ -27,3 +33,7 @@
 -  Treasure Island
 -  Anne of Green Gables
 -  Little Women
+
+## Books to add
+
+-  Mapp & Lucia https://gutenberg.net.au/ebooks05/0501131h.html#c01

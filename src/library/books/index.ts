@@ -20,7 +20,6 @@ export async function getAllBooks(): Promise<Book[]> {
 			.map(async (filename) => {
 				const slug = filename.replace(/\.(ts)$/, '')
 
-				// Use dynamic import instead of require
 				const bookModule = await import(`./data/${slug}`)
 				const book = bookModule.book as Book
 

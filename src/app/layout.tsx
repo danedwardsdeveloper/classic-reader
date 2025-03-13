@@ -3,6 +3,7 @@ import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata, Viewport } from 'next'
 
 import './styles.tailwind.css'
+import Menu from '@/components/Menu'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
 
@@ -29,7 +30,10 @@ export default function RootLayout({
 		<html lang="en-GB" suppressHydrationWarning>
 			<body className=" bg-slate-50">
 				<Providers>
-					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
+					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">
+						<Menu />
+						{children}
+					</div>
 				</Providers>
 			</body>
 			<Script src="https://scripts.simpleanalyticscdn.com/latest.js" />

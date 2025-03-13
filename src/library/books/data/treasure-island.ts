@@ -1521,18 +1521,6 @@ export const book: Book = {
   [
     "The mutineers were soon only eight in number, for the man shot by Mr. Trelawney on board the schooner died that same evening of his wound. But this was, of course, not known till after by the faithful party. ↩︎"
   ],
-  [
-    "Treasure Island\n\t\t\twas written in 1881 by\n\t\t\tRobert Louis Stevenson.",
-    "This ebook was produced for\n\t\t\tStandard Ebooks\n\t\t\tby\n\t\t\tAlex Cabal,\n\t\t\tand is based on a transcription produced in 2009 by\n\t\t\tJuliet Sutherland, Stephen Blundell, and The Online Distributed Proofreading Team\n\t\t\tfor\n\t\t\tProject Gutenberg\n\t\t\tand on digital scans from the\n\t\t\tInternet Archive.",
-    "The cover page is adapted from\n\t\t\tOne More Step, Mr. Hands,\n\t\t\ta painting completed in 1911 by\n\t\t\tN. C. Wyeth.\n\t\t\tThe cover and title pages feature the\n\t\t\tLeague Spartan and Sorts Mill Goudy\n\t\t\ttypefaces created in 2014 and 2009 by\n\t\t\tThe League of Moveable Type.",
-    "This edition was released on\n\t\t\tNovember 7, 2024, 8:56 p.m.\n\t\t\tand is based on\n\t\t\trevision c4779b2.\n\t\t\tThe first edition of this ebook was released on\n\t\t\tApril 15, 2015, 11:09 a.m.\n\t\t\tYou can check for updates to this ebook, view its revision history, or download it for different ereading systems at\n\t\t\tstandardebooks.org/ebooks/robert-louis-stevenson/treasure-island.",
-    "The volunteer-driven Standard Ebooks project relies on readers like you to submit typos, corrections, and other improvements. Anyone can contribute at standardebooks.org."
-  ],
-  [
-    "May you do good and not evil.\n\t\t\t\t\t\n\t\t\t\t\tMay you find forgiveness for yourself and forgive others.\n\t\t\t\t\t\n\t\t\t\t\tMay you share freely, never taking more than you give.",
-    "Copyright pages exist to tell you that you can’t do something. Unlike them, this Uncopyright page exists to tell you that the writing and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. The United States public domain represents our collective cultural heritage, and items in it are free for anyone in the United States to do almost anything at all with, without having to get permission.",
-    "Copyright laws are different all over the world, and the source text or artwork in this ebook may still be copyrighted in other countries. If you’re not located in the United States, you must check your local laws before using this ebook. Standard Ebooks makes no representations regarding the copyright status of the source text or artwork in this ebook in any country other than the United States.",
-    "Non-authorship activities performed on items that are in the public domain﻿—so-called “sweat of the brow” work﻿—don’t create a new copyright. That means that nobody can claim a new copyright on an item that is in the public domain for, among other things, work like digitization, markup, or typography. Regardless, the contributors to this ebook release their contributions under the terms in the CC0 1.0 Universal Public Domain Dedication, thus dedicating to the worldwide public domain all of the work they’ve done on this ebook, including but not limited to metadata, the titlepage, imprint, colophon, this Uncopyright, and any changes or enhancements to, or markup on, the original text and artwork. This dedication doesn’t change the copyright status of the source text or artwork. We make this dedication in the interest of enriching our global cultural heritage, to promote free and libre culture around the world, and to give back to the unrestricted culture that has given all of us so much."
-  ]
+  
 ]
 };

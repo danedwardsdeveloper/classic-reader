@@ -4,7 +4,7 @@
 
 @layer base {
   h1 {
-    @apply text-4xl font-semibold mb-8;
+    @apply text-4xl font-semibold mb-8 text-pretty;
   }
   h2 {
     @apply text-3xl font-medium mb-4;
@@ -19,7 +19,10 @@
 
 @layer components {
   .link {
-    @apply  hover:text-blue-600 transition-colors duration-300
+    @apply transition-colors duration-300
+  }
+  .link-primary {
+    @apply link text-blue-600 underline underline-offset-2 md:text-zinc-600 md:no-underline hover:text-blue-600 active:text-blue-700
   }
   .button {
     @apply rounded-lg px-3 py-1 font-medium text-sm border-2  transition-all duration-300 shadow active:shadow-none;

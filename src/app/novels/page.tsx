@@ -1,6 +1,5 @@
-import BooksList from '@/components/BooksList'
 import Footer from '@/components/Footer'
-import Menu from '@/components/Menu'
+import BooksList from '@/components/NovelsList'
 import { getAllBooks } from '@/library/books'
 
 export default async function AllBooksPage() {
@@ -10,7 +9,6 @@ export default async function AllBooksPage() {
 		<>
 			<div className="flex-1 max-w-prose w-full mx-auto">
 				<div className="flex flex-col w-full">
-					<Menu />
 					<BooksList books={books} />
 				</div>
 			</div>

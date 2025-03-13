@@ -1,16 +1,24 @@
-import BooksList from '@/components/BooksList'
 import Footer from '@/components/Footer'
-import Menu from '@/components/Menu'
+import BooksList from '@/components/NovelsList'
 import { getAllBooks } from '@/library/books'
 import { authors } from '@/library/constants'
 import { notFound } from 'next/navigation'
 
-type Params = Promise<{ author: string }>
+type UnwrappedParams = { writer: string }
+type Params = Promise<UnwrappedParams>
+type StaticParams = Promise<UnwrappedParams[]>
 
-export default async function AllBooksPage({ params }: { params: Params }) {
-	const { author } = await params
+export async function generateStaticParams(): StaticParams {
+	return Object.keys(authors).map((authorKey) => ({
+		writer: authors[authorKey as keyof typeof authors].slug,
+	}))
+}
+
+// All novels by a particular writer
+export default async function WriterPage({ params }: { params: Params }) {
+	const { writer } = await params
 	const allBooks = await getAllBooks()
-	const authorEntry = Object.entries(authors).find(([_, authorData]) => authorData.slug === author)
+	const authorEntry = Object.entries(authors).find(([_, authorData]) => authorData.slug === writer)
 
 	const authorDisplayName = authorEntry ? authorEntry[1].display : null
 
@@ -22,7 +30,7 @@ export default async function AllBooksPage({ params }: { params: Params }) {
 		<>
 			<div className="flex-1 max-w-prose w-full mx-auto">
 				<div className="flex flex-col w-full">
-					<Menu />
+					<h1>Novels by {authorDisplayName}</h1>
 					<BooksList books={filteredBooks} />
 				</div>
 			</div>
