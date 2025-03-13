@@ -1,4 +1,3 @@
-
 import type { Book } from '@/types'
 
 export const book: Book = {

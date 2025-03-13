@@ -1,3 +1,14 @@
+-  Generate all static params for novels
+-  Add chapter name handling
+-  Add chapter names to the URL if available
+-  Add poem handling
+
+-  Continue reading link! Important!
+
+-  Light, dark, sepia
+-  Justified, hyphenated, normal
+
+-  Root metadata
 -  Add author name to URL
 -  Add footer to main page
 -  Add chapter number to navigation button

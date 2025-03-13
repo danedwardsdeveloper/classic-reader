@@ -3,12 +3,13 @@ import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata, Viewport } from 'next'
 
 import './styles.tailwind.css'
+import Script from 'next/script'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-	title: `Dan's Next.js Configuration`,
+	title: 'Classic Reader',
 	metadataBase: new URL(dynamicBaseURL),
-	description: 'Site description',
+	description: 'Read classic novels online',
 	alternates: {
 		canonical: dynamicBaseURL,
 	},
@@ -31,6 +32,7 @@ export default function RootLayout({
 					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
 				</Providers>
 			</body>
+			<Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
 		</html>
 	)
 }

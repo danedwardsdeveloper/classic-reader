@@ -3,32 +3,40 @@ import Footer from '@/components/Footer'
 import Menu from '@/components/Menu'
 import { getAllBooks, getBookBySlug } from '@/library/books'
 import { dynamicBaseURL } from '@/library/environment/publicVariables'
+import { getAuthorSlugByDisplay } from '@/library/getAuthorSlug'
 import type { Metadata } from 'next'
 
-interface Params {
-	slug: string
+interface ResolvedParams {
+	author: string
+	novel: string
 	page: string
 }
 
-export async function generateStaticParams(): Promise<Array<Params>> {
+type Params = Promise<ResolvedParams>
+
+export async function generateStaticParams(): Promise<Array<ResolvedParams>> {
 	const books = await getAllBooks()
 	const params = []
 
 	for (const book of books) {
-		for (let i = 0; i < book.chapters.length; i++) {
-			params.push({
-				slug: book.slug,
-				page: (i + 1).toString(),
-			})
+		const authorSlug = getAuthorSlugByDisplay(book.author)
+		if (authorSlug) {
+			for (let i = 0; i < book.chapters.length; i++) {
+				params.push({
+					author: authorSlug,
+					novel: book.slug,
+					page: (i + 1).toString(),
+				})
+			}
 		}
 	}
 
 	return params
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-	const { slug, page } = await params
-	const bookData = await getBookBySlug(slug)
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+	const { author, page } = await params
+	const bookData = await getBookBySlug(author)
 	if (!bookData) return { title: 'Chapter not found' }
 
 	return {
@@ -40,15 +48,15 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 	}
 }
 
-export default async function Page({ params }: { params: Promise<Params> }) {
-	const { slug, page } = await params
+export default async function Page({ params }: { params: Params }) {
+	const { novel, page } = await params
 	const currentPage = Number.parseInt(page, 10)
-	const bookData = await getBookBySlug(slug)
+	const bookData = await getBookBySlug(novel)
 	if (!bookData) return null
 
 	return (
 		<>
-			<Menu book={bookData} />
+			<Menu />
 
 			<h1>Chapter {currentPage}</h1>
 			<div className="flex flex-col gap-y-8 max-w-prose text-lg">

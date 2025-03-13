@@ -11,9 +11,11 @@ export async function generateStaticParams() {
 	}))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-	const { slug } = await params
-	const bookData = await getBookBySlug(slug)
+type Params = Promise<{ novel: string; author: string }>
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+	const { novel } = await params
+	const bookData = await getBookBySlug(novel)
 
 	if (!bookData) {
 		return {
@@ -26,14 +28,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 	}
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-	const { slug } = await params
-	const bookData = await getBookBySlug(slug)
+export default async function Page({ params }: { params: Params }) {
+	const { novel } = await params
+	const bookData = await getBookBySlug(novel)
 	if (!bookData) return null
 
 	return (
 		<>
-			<Menu book={bookData} />
+			<Menu />
 			<div className="flex-1 flex flex-col  max-w-prose w-full mx-auto">
 				<ChapterList book={bookData} />
 			</div>

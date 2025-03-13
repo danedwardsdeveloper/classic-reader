@@ -1,4 +1,5 @@
 'use client'
+import { getAuthorSlugByDisplay } from '@/library/getAuthorSlug'
 import { useLocalStorage } from '@/providers/localStorage'
 import type { Book } from '@/types'
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
@@ -8,6 +9,9 @@ import { useRouter } from 'next/navigation'
 export default function ChapterNavigation({ bookData, currentPage }: { bookData: Book; currentPage: number }) {
 	const router = useRouter()
 	const { markChapterAsRead } = useLocalStorage()
+
+	const authorSlug = getAuthorSlugByDisplay(bookData.author)
+
 	const totalChapters = bookData.chapters.length
 	const isFirstChapter = currentPage === 1
 	const isLastChapter = currentPage === totalChapters
@@ -16,13 +20,13 @@ export default function ChapterNavigation({ bookData, currentPage }: { bookData:
 
 	function handlePrevious() {
 		if (isFirstChapter) return null
-		router.push(`/books/${bookData.slug}/${previousPage}`)
+		router.push(`/novels/${authorSlug}/${bookData.slug}/${previousPage}`)
 	}
 
 	function handleNext() {
 		if (isLastChapter) return null
 		markChapterAsRead(bookData.slug, currentPage - 1)
-		router.push(`/books/${bookData.slug}/${nextPage}`)
+		router.push(`/novels/${authorSlug}/${bookData.slug}/${nextPage}`)
 	}
 
 	return (
