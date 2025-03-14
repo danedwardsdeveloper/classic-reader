@@ -10,6 +10,7 @@ type LocalStorageContextType = {
 	markChapterAsRead: (bookSlug: string, chapterNumber: number) => void
 	markChapterAsUnread: (bookSlug: string, chapterNumber: number) => void
 	getBookChapters: (bookSlug: string) => Record<number, boolean>
+	getNextUnreadChapter: (bookSlug: string, totalChapters?: number) => number | null
 	isLoading: boolean
 }
 
@@ -27,7 +28,6 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		setIsLoading(true)
 
 		try {
-			// Only look for keys that match our book chapter prefix
 			const allKeys = Object.keys(localStorage).filter((key) => key.startsWith(prefix))
 			const loadedStatus: ChapterStatus = {}
 
@@ -36,7 +36,6 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 					const storedData = localStorage.getItem(key)
 					if (storedData) {
 						const parsed = JSON.parse(storedData)
-						// Extract the book slug from the key
 						const bookSlug = key.replace(prefix, '')
 						loadedStatus[bookSlug] = parsed
 					}
@@ -115,6 +114,24 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		})
 	}
 
+	function getNextUnreadChapter(bookSlug: string, totalChapters?: number): number | null {
+		const bookChapters = getBookChapters(bookSlug)
+
+		if (Object.keys(bookChapters).length === 0) return 1
+
+		let nextChapter = 1
+		const maxChapter = totalChapters || Math.max(...Object.keys(bookChapters).map(Number))
+
+		while (nextChapter <= maxChapter - 1) {
+			if (!bookChapters[nextChapter]) {
+				return nextChapter + 1
+			}
+			nextChapter++
+		}
+
+		return null
+	}
+
 	return (
 		<LocalStorageContext.Provider
 			value={{
@@ -123,6 +140,7 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 				markChapterAsRead,
 				markChapterAsUnread,
 				getBookChapters,
+				getNextUnreadChapter,
 				isLoading,
 			}}
 		>
