@@ -1,14 +1,14 @@
 import Footer from '@/components/Footer'
 import BooksList from '@/components/NovelsList'
-import { getAllBooks } from '@/library/books'
+import { getAllNovels } from '@/library/getAllNovels'
 
 export default async function AllBooksPage() {
-	const books = await getAllBooks()
+	const novels = await getAllNovels()
 
 	return (
 		<>
 			<div className="flex-1 max-w-prose w-full mx-auto">
-				<BooksList books={books} />
+				<BooksList novels={novels} />
 			</div>
 			<Footer />
 		</>

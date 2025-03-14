@@ -1,23 +1,23 @@
 'use client'
-import { getWriterSlugByDisplay } from '@/library/getWriterSlugByDisplay'
+import { getSlugFromDisplay } from '@/library/getSlugFromDisplay'
 import { hasProgress } from '@/library/hasProgress'
 import { useLocalStorage } from '@/providers/localStorage'
-import type { Book } from '@/types'
+import type { Novel } from '@/types'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Spinner from './Spinner'
 
-export default function NovelsList({ books }: { books: Book[] }) {
+export default function NovelsList({ novels }: { novels: Novel[] }) {
 	const { isLoading, getBookChapters } = useLocalStorage()
 
 	if (isLoading) return <Spinner />
 
 	return (
 		<ul className="flex flex-col gap-y-8 divide-y-2">
-			{books.map((bookData, index) => {
+			{novels.map((bookData, index) => {
 				if (!bookData) return null
 				const novelSlug = bookData.slug
-				const writerSlug = getWriterSlugByDisplay(bookData.writer)
+				const writerSlug = getSlugFromDisplay(bookData.writer)
 
 				const localStorageData = getBookChapters(bookData.slug)
 				const hasBeenRead = hasProgress(localStorageData)

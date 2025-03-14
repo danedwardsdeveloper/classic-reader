@@ -1,6 +1,6 @@
-import type { Book } from '@/types'
+import type { Novel } from '@/types'
 
-export const book: Book = {
+export const novel: Novel = {
   slug: 'little-women',
   title: "Little Women",
   writer: "Louisa May Alcott",

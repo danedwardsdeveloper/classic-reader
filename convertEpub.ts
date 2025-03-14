@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import logger from '@/library/logger'
-import type { Book, BookSlug } from '@/types'
 import EPub from 'epub'
 import { JSDOM } from 'jsdom'
+import logger from './src/library/logger'
+import type { Novel, NovelSlug } from './src/types'
 
-function parseEpub(epubPath: string): Promise<Book> {
+function parseEpub(epubPath: string): Promise<Novel> {
 	logger.info('Parsing epub...')
 	return new Promise((resolve, reject) => {
 		const epub = new EPub(epubPath)
@@ -17,7 +17,7 @@ function parseEpub(epubPath: string): Promise<Book> {
 		epub.on('end', async () => {
 			try {
 				const title = epub.metadata.title
-				const author = epub.metadata.creator || 'Unknown Author'
+				const writer = epub.metadata.creator || 'Unknown writer'
 				const chapters: Array<Array<string>> = []
 
 				for (const chapter of epub.flow) {
@@ -53,7 +53,7 @@ function parseEpub(epubPath: string): Promise<Book> {
 				resolve({
 					slug: 'change or error',
 					title,
-					author,
+					writer,
 					chapters,
 				})
 			} catch (error) {
@@ -74,24 +74,24 @@ async function main() {
 	const epubPath = process.argv[2]
 
 	try {
-		const book = await parseEpub(epubPath)
-		const bookName = path.basename(epubPath, '.epub') as BookSlug
-		const outputDir = path.join(process.cwd(), 'src', 'library', 'books', 'data')
-		const outputPath = path.join(outputDir, `${bookName}.ts`)
+		const novel = await parseEpub(epubPath)
+		const novelName = path.basename(epubPath, '.epub') as NovelSlug
+		const outputDir = path.join(process.cwd(), 'src', 'library', 'data', 'novels')
+		const outputPath = path.join(outputDir, `${novelName}.ts`)
 
 		const output = `
-import type { Book } from '@/types'
+import type { Novel } from '@/types'
 
-export const book: Book = {
-  slug: ${book.slug},
-  title: ${JSON.stringify(book.title)},
-  author: ${JSON.stringify(book.author)},
-  chapters: ${JSON.stringify(book.chapters, null, 2)}
+export const novel: Novel = {
+  slug: ${novel.slug},
+  title: ${JSON.stringify(novel.title)},
+  writer: ${JSON.stringify(novel.writer)},
+  chapters: ${JSON.stringify(novel.chapters, null, 2)}
 };`
 
 		await fs.writeFile(outputPath, output)
 
-		logger.info(`Book data saved to ${outputPath}`)
+		logger.info(`Novel data saved to ${outputPath}`)
 	} catch (error) {
 		logger.error('Error parsing EPUB:', error)
 	}
@@ -100,7 +100,5 @@ export const book: Book = {
 main().catch(logger.error)
 
 /* 
-pnpm tsx convertEpub.ts /Users/dan/Desktop/treasure-island.epub
-pnpm tsx convertEpub.ts /Users/dan/Desktop/the-tenant-of-wildfell-hall.epub
-pnpm tsx convertEpub.ts /Users/dan/Desktop/cranford.epub
+pnpm tsx convertEpub.ts /Users/dan/Desktop/fanny-hill.epub
 */

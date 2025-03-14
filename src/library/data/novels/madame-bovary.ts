@@ -1,6 +1,6 @@
-import type { Book } from '@/types'
+import type { Novel } from '@/types'
 
-export const book: Book = {
+export const novel: Novel = {
 	slug: 'madame-bovary',
 	title: 'Madame Bovary',
 	writer: 'Gustave Flaubert',
@@ -2849,6 +2849,5 @@ export const book: Book = {
 			'Rest traveler. ↩︎',
 			'Tread upon a loving wife. ↩︎',
 		],
-		
 	],
 }

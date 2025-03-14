@@ -7,10 +7,10 @@ export default function Page() {
 		<>
 			<h1>Writers</h1>
 			<ul className="flex flex-col gap-y-3">
-				{Object.values(writerDetails).map((writer) => (
-					<li key={writer.slug}>
-						<Link href={`/writers/${writer.slug}`} className="link-primary text-xl">
-							{writer.display}
+				{Object.entries(writerDetails).map(([slug, display]) => (
+					<li key={slug}>
+						<Link href={`/writers/${slug}`} className="link-primary text-xl">
+							{display}
 						</Link>
 					</li>
 				))}

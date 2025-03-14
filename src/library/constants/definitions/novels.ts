@@ -1,4 +1,4 @@
-export const bookSlugs = {
+export const novels = {
 	prideAndPrejudice: 'pride-and-prejudice',
 	dracula: 'dracula',
 	emma: 'emma',

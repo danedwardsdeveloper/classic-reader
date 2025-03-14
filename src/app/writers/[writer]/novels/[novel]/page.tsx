@@ -1,7 +1,7 @@
 import ChaptersList from '@/components/ChaptersList'
 import Footer from '@/components/Footer'
-import { getAllBooks, getBookBySlug } from '@/library/books'
-import { getWriterSlugByDisplay } from '@/library/getWriterSlugByDisplay'
+import { getAllNovels, getBookBySlug } from '@/library/getAllNovels'
+import { getSlugFromDisplay } from '@/library/getSlugFromDisplay'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -10,10 +10,10 @@ type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateStaticParams(): StaticParams {
-	const books = await getAllBooks()
+	const books = await getAllNovels()
 	const params = books
 		.map((book) => {
-			const writerSlug = getWriterSlugByDisplay(book.writer)
+			const writerSlug = getSlugFromDisplay(book.writer)
 			if (!writerSlug) return null
 
 			return {
@@ -53,9 +53,9 @@ export default async function Page({ params }: { params: Params }) {
 				<h1>
 					{bookData.title} by {bookData.writer}
 				</h1>
-				<ChaptersList book={bookData} />
+				<ChaptersList novel={bookData} />
 			</div>
-			<Footer currentBook={bookData} />
+			<Footer currentNovel={bookData} />
 		</>
 	)
 }
