@@ -8,9 +8,9 @@ import Script from 'next/script'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-	title: 'Classic Reader',
+	title: 'Home | ClassicReader.org - Read classic novels online.',
 	metadataBase: new URL(dynamicBaseURL),
-	description: 'Read classic novels online',
+	description: 'ClassicReader.org is a website for reading classic novels in the browser without any ads, distractions or clutter.',
 	alternates: {
 		canonical: dynamicBaseURL,
 	},
