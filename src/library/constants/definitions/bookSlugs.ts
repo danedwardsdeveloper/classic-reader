@@ -1,0 +1,18 @@
+export const bookSlugs = {
+	prideAndPrejudice: 'pride-and-prejudice',
+	dracula: 'dracula',
+	emma: 'emma',
+	madameBovary: 'madame-bovary',
+	warAndPeace: 'war-and-peace',
+	northangerAbbey: 'northanger-abbey',
+	tessOfTheDurbervilles: 'tess-of-the-durbervilles',
+	janeEyre: 'jane-eyre',
+	middlemarch: 'middlemarch',
+	crimeAndPunishment: 'crime-and-punishment',
+	littleWomen: 'little-women',
+	anneOfGreenGables: 'anne-of-green-gables',
+	senseAndSensibility: 'sense-and-sensibility',
+	cranford: 'cranford',
+	tenantOfWildfellHall: 'the-tenant-of-wildfell-hall',
+	treasureIsland: 'treasure-island',
+} as const

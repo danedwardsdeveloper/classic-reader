@@ -33,6 +33,8 @@ const safeStringify = (data: unknown): string => {
 	}
 }
 
+// ToDo: use updated version with map handling
+
 const stringifyArguments = (...args: unknown[]): string[] => args.map((arg) => (typeof arg === 'string' ? arg : safeStringify(arg)))
 
 const createServerLogger = (type: 'debug' | 'info' | 'warn' | 'error', label: string) => {

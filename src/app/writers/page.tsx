@@ -1,4 +1,4 @@
-import { authors } from '@/library/constants'
+import { writerDetails } from '@/library/constants'
 import Link from 'next/link'
 
 // List of writers
@@ -7,10 +7,10 @@ export default function Page() {
 		<>
 			<h1>Writers</h1>
 			<ul className="flex flex-col gap-y-3">
-				{Object.values(authors).map((author) => (
-					<li key={author.slug}>
-						<Link href={`/writers/${author.slug}`} className="link-primary text-xl">
-							{author.display}
+				{Object.values(writerDetails).map((writer) => (
+					<li key={writer.slug}>
+						<Link href={`/writers/${writer.slug}`} className="link-primary text-xl">
+							{writer.display}
 						</Link>
 					</li>
 				))}

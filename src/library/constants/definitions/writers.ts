@@ -1,23 +1,4 @@
-export const bookSlugs = {
-	prideAndPrejudice: 'pride-and-prejudice',
-	dracula: 'dracula',
-	emma: 'emma',
-	madameBovary: 'madame-bovary',
-	warAndPeace: 'war-and-peace',
-	northangerAbbey: 'northanger-abbey',
-	tessOfTheDurbervilles: 'tess-of-the-durbervilles',
-	janeEyre: 'jane-eyre',
-	middlemarch: 'middlemarch',
-	crimeAndPunishment: 'crime-and-punishment',
-	littleWomen: 'little-women',
-	anneOfGreenGables: 'anne-of-green-gables',
-	senseAndSensibility: 'sense-and-sensibility',
-	cranford: 'cranford',
-	tenantOfWildfellHall: 'the-tenant-of-wildfell-hall',
-	treasureIsland: 'treasure-island',
-} as const
-
-export const authors = {
+export const writerDetails = {
 	charlotteBronte: { slug: 'charlotte-bronte', display: 'Charlotte Brontë' },
 	janeAusten: { slug: 'jane-austen', display: 'Jane Austen' },
 	bramStoker: { slug: 'bram-stoker', display: 'Bram Stoker' },

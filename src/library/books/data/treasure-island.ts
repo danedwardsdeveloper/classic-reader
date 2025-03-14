@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'treasure-island',
   title: "Treasure Island",
-  author: "Robert Louis Stevenson",
+  writer: "Robert Louis Stevenson",
   chapters: [
   [
     "At the Admiral Benbow",

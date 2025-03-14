@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
 	slug: 'emma',
 	title: 'Emma',
-	author: 'Jane Austen',
+	writer: 'Jane Austen',
 	chapters: [
 		[
 			'Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy\ndisposition, seemed to unite some of the best blessings of existence; and had\nlived nearly twenty-one years in the world with very little to distress or vex\nher.',

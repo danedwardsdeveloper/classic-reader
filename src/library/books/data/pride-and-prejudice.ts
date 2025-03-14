@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
 	slug: 'pride-and-prejudice',
 	title: 'Pride and Prejudice',
-	author: 'Jane Austen',
+	writer: 'Jane Austen',
 	chapters: [
 		[
 			'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',

@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'crime-and-punishment',
   title: "Crime and Punishment",
-  author: "Fyodor Dostoevsky",
+  writer: "Fyodor Dostoevsky",
   chapters: [
   [
     "On an exceptionally hot evening early in July a young man came out of the garret in which he lodged in S﻿—﻿— Place and walked slowly, as though in hesitation, towards K﻿—﻿— bridge.",

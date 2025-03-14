@@ -2,27 +2,27 @@ import ChapterNavigation from '@/components/ChapterNavigation'
 import Footer from '@/components/Footer'
 import { getAllBooks, getBookBySlug } from '@/library/books'
 import { dynamicBaseURL } from '@/library/environment/publicVariables'
-import { getAuthorSlugByDisplay } from '@/library/getAuthorSlug'
+import { getWriterSlugByDisplay } from '@/library/getWriterSlugByDisplay'
 import type { Metadata } from 'next'
 
 interface ResolvedParams {
-	author: string
+	writer: string
 	novel: string
 	page: string
 }
-
 type Params = Promise<ResolvedParams>
+type StaticParams = Promise<ResolvedParams[]>
 
-export async function generateStaticParams(): Promise<Array<ResolvedParams>> {
+export async function generateStaticParams(): StaticParams {
 	const books = await getAllBooks()
 	const params = []
 
 	for (const book of books) {
-		const authorSlug = getAuthorSlugByDisplay(book.author)
-		if (authorSlug) {
+		const writerSlug = getWriterSlugByDisplay(book.writer)
+		if (writerSlug) {
 			for (let i = 0; i < book.chapters.length; i++) {
 				params.push({
-					author: authorSlug,
+					writer: writerSlug,
 					novel: book.slug,
 					page: (i + 1).toString(),
 				})
@@ -34,15 +34,15 @@ export async function generateStaticParams(): Promise<Array<ResolvedParams>> {
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-	const { author, page } = await params
-	const bookData = await getBookBySlug(author)
+	const { writer, page, novel } = await params
+	const bookData = await getBookBySlug(novel)
 	if (!bookData) return { title: 'Chapter not found' }
 
 	return {
-		title: `Chapter ${page} | ${bookData.title} by ${bookData.author}`,
-		description: `Read chapter ${page} of ${bookData.title} by ${bookData.author} on Classic Reader - a simple website for reading classic books for free.`,
+		title: `Chapter ${page} | ${bookData.title} by ${bookData.writer}`,
+		description: `Read chapter ${page} of ${bookData.title} by ${bookData.writer} on Classic Reader - a simple website for reading classic books for free.`,
 		alternates: {
-			canonical: `${dynamicBaseURL}/books/${bookData.slug}/${page}`,
+			canonical: `${dynamicBaseURL}/writers/${writer}/novels/${novel}/${page}`,
 		},
 	}
 }

@@ -8,9 +8,7 @@ export default async function AllBooksPage() {
 	return (
 		<>
 			<div className="flex-1 max-w-prose w-full mx-auto">
-				<div className="flex flex-col w-full">
-					<BooksList books={books} />
-				</div>
+				<BooksList books={books} />
 			</div>
 			<Footer />
 		</>

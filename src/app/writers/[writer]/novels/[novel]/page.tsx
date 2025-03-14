@@ -1,30 +1,29 @@
 import ChaptersList from '@/components/ChaptersList'
 import Footer from '@/components/Footer'
 import { getAllBooks, getBookBySlug } from '@/library/books'
-import { authors } from '@/library/constants'
+import { getWriterSlugByDisplay } from '@/library/getWriterSlugByDisplay'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-type UnwrappedParams = { writer: string; novel: string }
-type Params = Promise<UnwrappedParams>
+type ResolvedParams = { writer: string; novel: string }
+type Params = Promise<ResolvedParams>
+type StaticParams = Promise<ResolvedParams[]>
 
-// Main ToDo: Get this working
-export async function generateStaticParams(): Promise<UnwrappedParams[]> {
+export async function generateStaticParams(): StaticParams {
 	const books = await getAllBooks()
+	const params = books
+		.map((book) => {
+			const writerSlug = getWriterSlugByDisplay(book.writer)
+			if (!writerSlug) return null
 
-	const paramsWithNulls = await Promise.all(
-		books.map(async (book) => {
-			const fullBookDetails = await getBookBySlug(book.slug)
-			if (!fullBookDetails) return null
-			const authorEntry = Object.values(authors).find((a) => a.display === book.author)
-			if (!authorEntry) return null
 			return {
-				writer: authorEntry.slug,
-				novel: fullBookDetails.slug,
+				writer: writerSlug,
+				novel: book.slug,
 			}
-		}),
-	)
-	return paramsWithNulls.filter(Boolean) as UnwrappedParams[]
+		})
+		.filter(Boolean) as ResolvedParams[]
+
+	return params
 }
 
 // Landing page for a novel
@@ -39,7 +38,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	}
 
 	return {
-		title: `${bookData.title} by ${bookData.author}`,
+		title: `${bookData.title} by ${bookData.writer}`,
 	}
 }
 
@@ -52,7 +51,7 @@ export default async function Page({ params }: { params: Params }) {
 		<>
 			<div className="flex-1 flex flex-col  max-w-prose w-full mx-auto">
 				<h1>
-					{bookData.title} by {bookData.author}
+					{bookData.title} by {bookData.writer}
 				</h1>
 				<ChaptersList book={bookData} />
 			</div>

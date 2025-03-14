@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
 	slug: 'madame-bovary',
 	title: 'Madame Bovary',
-	author: 'Gustave Flaubert',
+	writer: 'Gustave Flaubert',
 	chapters: [
 		[
 			'We were in class when the headmaster came in, followed by a “new fellow,” not wearing the school uniform, and a school servant carrying a large desk. Those who had been asleep woke up, and everyone rose as if just surprised at his work.',

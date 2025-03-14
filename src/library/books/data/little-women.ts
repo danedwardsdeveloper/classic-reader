@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'little-women',
   title: "Little Women",
-  author: "Louisa May Alcott",
+  writer: "Louisa May Alcott",
   chapters: [
   [
     "Playing Pilgrims",

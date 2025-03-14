@@ -1,5 +1,5 @@
 'use client'
-import { getAuthorSlugByDisplay } from '@/library/getAuthorSlug'
+import { getWriterSlugByDisplay } from '@/library/getWriterSlugByDisplay'
 import { useLocalStorage } from '@/providers/localStorage'
 import type { Book } from '@/types'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import Spinner from './Spinner'
 export default function ChaptersList({ book }: { book: Book }) {
 	const { isLoading, getBookChapters, toggleChapter } = useLocalStorage()
 	const checkedChapters = getBookChapters(book.slug)
-	const authorSlug = getAuthorSlugByDisplay(book.author)
+	const writerSlug = getWriterSlugByDisplay(book.writer)
 
 	if (isLoading) return <Spinner />
 
@@ -23,7 +23,7 @@ export default function ChaptersList({ book }: { book: Book }) {
 						className="size-6 bg-gray-100 border-gray-300 rounded focus:ring-2 transition duration-300 text-blue-600 focus:ring-orange-400 hover:bg-blue-200"
 						aria-label={`Mark Chapter ${index + 1} as read`}
 					/>
-					<Link href={`/writers/${authorSlug}/novels/${book.slug}/${index + 1}`} className="link-primary text-lg">
+					<Link href={`/writers/${writerSlug}/novels/${book.slug}/${index + 1}`} className="link-primary text-lg">
 						Chapter {index + 1}
 					</Link>
 				</li>

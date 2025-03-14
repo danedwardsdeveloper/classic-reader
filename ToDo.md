@@ -1,11 +1,11 @@
 ## Tonight
 
--  Generate all static params for novels and get back up to 1,000 static pages
+-  Add chapter name handling
+-  Put chapter names in the meta description
 
 ## Later
 
--  Split long chapters into multiple pages
--  Add chapter name handling
+-  Split long chapters into multiple pages???
 -  Add chapter names to the URL if available
 -  Add poem handling
 

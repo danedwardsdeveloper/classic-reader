@@ -1,16 +1,16 @@
 import Footer from '@/components/Footer'
 import BooksList from '@/components/NovelsList'
 import { getAllBooks } from '@/library/books'
-import { authors } from '@/library/constants'
+import { writerDetails } from '@/library/constants'
 import { notFound } from 'next/navigation'
 
-type UnwrappedParams = { writer: string }
-type Params = Promise<UnwrappedParams>
-type StaticParams = Promise<UnwrappedParams[]>
+type ResolvedParams = { writer: string }
+type Params = Promise<ResolvedParams>
+type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateStaticParams(): StaticParams {
-	return Object.keys(authors).map((authorKey) => ({
-		writer: authors[authorKey as keyof typeof authors].slug,
+	return Object.keys(writerDetails).map((authorKey) => ({
+		writer: writerDetails[authorKey as keyof typeof writerDetails].slug,
 	}))
 }
 
@@ -18,11 +18,11 @@ export async function generateStaticParams(): StaticParams {
 export default async function WriterPage({ params }: { params: Params }) {
 	const { writer } = await params
 	const allBooks = await getAllBooks()
-	const authorEntry = Object.entries(authors).find(([_, authorData]) => authorData.slug === writer)
+	const authorEntry = Object.entries(writerDetails).find(([_, authorData]) => authorData.slug === writer)
 
 	const authorDisplayName = authorEntry ? authorEntry[1].display : null
 
-	const filteredBooks = authorDisplayName ? allBooks.filter((book) => book.author === authorDisplayName) : []
+	const filteredBooks = authorDisplayName ? allBooks.filter((book) => book.writer === authorDisplayName) : []
 
 	if (filteredBooks.length === 0) notFound()
 

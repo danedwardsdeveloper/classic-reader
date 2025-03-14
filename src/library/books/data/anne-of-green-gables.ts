@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'anne-of-green-gables',
   title: "Anne of Green Gables",
-  author: "Lucy Maud Montgomery",
+  writer: "Lucy Maud Montgomery",
   chapters: [
   [
     "Mrs. Rachel Lynde Is Surprised",

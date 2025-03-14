@@ -7,7 +7,7 @@ export default function NovelHeader({ book }: { book: Book }) {
 			<Link href={`/books/${book.slug}`} className="text-lg link">
 				{book.title.toUpperCase()}
 			</Link>
-			<span className="text-lg text-zinc-600">{book.author.toUpperCase()}</span>
+			<span className="text-lg text-zinc-600">{book.writer.toUpperCase()}</span>
 		</div>
 	)
 }

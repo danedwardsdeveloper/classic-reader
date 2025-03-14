@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'cranford',
   title: "Cranford",
-  author: "Elizabeth Gaskell",
+  writer: "Elizabeth Gaskell",
   chapters: [
   [
     "Our Society",

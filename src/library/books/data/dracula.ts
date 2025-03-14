@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'dracula',
   title: "Dracula",
-  author: "Bram Stoker",
+  writer: "Bram Stoker",
   chapters: [
 
   [

@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'the-tenant-of-wildfell-hall',
   title: "The Tenant of Wildfell Hall",
-  author: "Anne Brontë",
+  writer: "Anne Brontë",
   chapters: [
   [
     "You must go back with me to the autumn of 1827.",

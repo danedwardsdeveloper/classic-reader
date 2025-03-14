@@ -3,7 +3,7 @@ import type { Book } from '@/types'
 export const book: Book = {
   slug: 'tess-of-the-durbervilles',
   title: "Tess of the d’Urbervilles",
-  author: "Thomas Hardy",
+  writer: "Thomas Hardy",
   chapters: [
   [
     "Poor wounded name!\n\t\t\t\t\t\n\t\t\t\t\tMy bosom as a bed\n\t\t\t\t\t\n\t\t\t\t\tShall lodge thee.",
