@@ -14,11 +14,6 @@ export default function Footer({ currentNovel }: { currentNovel?: Novel }) {
 						</Link>
 					</li>
 					<li>
-						<Link href="/" className="link-primary">
-							Add a book
-						</Link>
-					</li>
-					<li>
 						<Link href="/privacy-policy" className="link-primary">
 							Privacy policy
 						</Link>
