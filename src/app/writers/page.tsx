@@ -1,3 +1,4 @@
+import BreadCrumbs from '@/components/BreadCrumbs'
 import { writerDetails } from '@/library/constants'
 import Link from 'next/link'
 
@@ -5,6 +6,7 @@ import Link from 'next/link'
 export default function Page() {
 	return (
 		<>
+			<BreadCrumbs currentPageName="Writers" homeOnly />
 			<h1>Writers</h1>
 			<ul className="flex flex-col gap-y-3">
 				{Object.entries(writerDetails).map(([slug, display]) => (
