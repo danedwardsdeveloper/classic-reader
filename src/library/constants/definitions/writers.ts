@@ -1,4 +1,4 @@
-export const writerDetails = {
+export const writers = {
 	'charlotte-bronte': 'Charlotte Brontë',
 	'jane-austen': 'Jane Austen',
 	'bram-stoker': 'Bram Stoker',
@@ -10,6 +10,7 @@ export const writerDetails = {
 	'louisa-may-alcott': 'Louisa May Alcott',
 	'lucy-maud-montgomery': 'Lucy Maud Montgomery',
 	'elizabeth-gaskell': 'Elizabeth Gaskell',
+	'e-f-benson': 'E F Benson',
 	'anne-bronte': 'Anne Brontë',
 	'robert-louis-stevenson': 'Robert Louis Stevenson',
 	'william-shakespeare': 'William Shakespeare',
