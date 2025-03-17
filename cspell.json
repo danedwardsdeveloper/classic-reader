@@ -1,18 +1,20 @@
 {
-  "ignorePaths": [
-    "pnpm-lock.yaml",
-    ".dockerignore",
-    ".gitignore",
-    "Dockerfile"
-  ],
-  "words": [
-    "Bingley",
-    "cranford",
-    "Durbervilles",
-    "Longbourn",
-    "middlemarch",
-    "Netherfield",
-    "northanger",
-    "Wildfell"
-  ]
+	"ignorePaths": [
+		"pnpm-lock.yaml",
+		".dockerignore",
+		".gitignore",
+		"Dockerfile"
+	],
+	"words": [
+		"Bingley",
+		"classicreader",
+		"cranford",
+		"d'Urbervilles",
+		"Durbervilles",
+		"Longbourn",
+		"middlemarch",
+		"Netherfield",
+		"northanger",
+		"Wildfell"
+	]
 }
