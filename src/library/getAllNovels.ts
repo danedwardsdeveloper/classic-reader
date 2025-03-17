@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import type { Novel } from '@/types/definitions/novels'
+import type { Novel } from '@/types/definitions/novel'
 import logger from './logger'
 
 let allNovelsCache: Novel[] | null = null
@@ -22,8 +22,8 @@ export async function getAllNovels(): Promise<Novel[]> {
 				const novelModule = await import(`./data/novels/${slug}`)
 				const novel = novelModule.novel as Novel
 
-				if (slug !== novel.slug) {
-					logger.error(`Slug mismatch: ${slug}, ${novel.slug}`)
+				if (slug !== novel.titleSlug) {
+					logger.error(`Slug mismatch: ${slug}, ${novel.titleSlug}`)
 				}
 
 				return novel
@@ -37,14 +37,14 @@ export async function getAllNovels(): Promise<Novel[]> {
 
 let getNovelsBySlugsCache: Record<string, Novel> | null = null
 
-export async function getBookBySlug(slug: string): Promise<Novel | null> {
+export async function getNovelBySlug(slug: string): Promise<Novel | null> {
 	if (!getNovelsBySlugsCache) {
 		getNovelsBySlugsCache = {}
 		const novels = await getAllNovels()
 
 		for (const novel of novels) {
-			if (novel.slug != null && novel.slug !== undefined) {
-				getNovelsBySlugsCache[novel.slug] = novel
+			if (novel.titleSlug != null && novel.titleSlug !== undefined) {
+				getNovelsBySlugsCache[novel.titleSlug] = novel
 			}
 		}
 	}
