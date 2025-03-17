@@ -1,3 +1,4 @@
+import BreadCrumbs from '@/components/BreadCrumbs'
 import Footer from '@/components/Footer'
 import BooksList from '@/components/NovelsList'
 import { getAllNovels } from '@/library/getAllNovels'
@@ -7,9 +8,8 @@ export default async function AllBooksPage() {
 
 	return (
 		<>
-			<div className="flex-1 max-w-prose w-full mx-auto">
-				<BooksList novels={novels} />
-			</div>
+			<BreadCrumbs homeOnly currentPageName="Novels" />
+			<BooksList novels={novels} />
 			<Footer />
 		</>
 	)
