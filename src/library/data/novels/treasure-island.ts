@@ -1,9 +1,10 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	slug: 'treasure-island',
-	title: 'Treasure Island',
-	writer: 'Robert Louis Stevenson',
+	titleDisplay: 'Treasure Island',
+	titleSlug: 'treasure-island',
+	writerDisplay: 'Robert Louis Stevenson',
+	writerSlug: 'robert-louis-stevenson',
 	chapters: [
 		// Part One: The Old Buccaneer
 		{

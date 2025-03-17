@@ -1,9 +1,10 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	slug: 'anne-of-green-gables',
-	title: 'Anne of Green Gables',
-	writer: 'Lucy Maud Montgomery',
+	titleSlug: 'anne-of-green-gables',
+	titleDisplay: 'Anne of Green Gables',
+	writerDisplay: 'Lucy Maud Montgomery',
+	writerSlug: 'lucy-maud-montgomery',
 	chapters: [
 		{
 			title: 'Mrs. Rachel Lynde Is Surprised',

@@ -1,9 +1,10 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	slug: 'pride-and-prejudice',
-	title: 'Pride and Prejudice',
-	writer: 'Jane Austen',
+	titleDisplay: 'Pride and',
+	titleSlug: 'pride-and-prejudice',
+	writerDisplay: 'Jane Austen',
+	writerSlug: 'jane-austen',
 	chapters: [
 		{
 			content: [

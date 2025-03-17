@@ -1,9 +1,10 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	slug: 'the-tenant-of-wildfell-hall',
-	title: 'The Tenant of Wildfell Hall',
-	writer: 'Anne Brontë',
+	titleDisplay: 'The Tenant of Wildfell Hall',
+	titleSlug: 'the-tenant-of-wildfell-hall',
+	writerDisplay: 'Anne Brontë',
+	writerSlug: 'anne-bronte',
 	chapters: [
 		{
 			content: [

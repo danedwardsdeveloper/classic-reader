@@ -1,17 +1,11 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	slug: 'dracula',
-	title: 'Dracula',
-	writer: 'Bram Stoker',
+	titleDisplay: 'Dracula',
+	titleSlug: 'dracula',
+	writerDisplay: 'Bram Stoker',
+	writerSlug: 'bram-stoker',
 	chapters: [
-		{
-			content: [
-				'To\n\t\t\tMy Dear Friend\n\t\t\tHommy-Beg',
-				'How these papers have been placed in sequence will be made manifest in the reading of them. All needless matters have been eliminated, so that the history almost at variance with the possibilities of later-day belief may stand forth as simple fact. There is throughout no statement of past things wherein memory may err, for all the records chosen are exactly contemporary, given from the standpoints and within range of knowledge of those who made them.',
-			],
-		},
-
 		{
 			content: [
 				'Jonathan Harker’s Journal.',
