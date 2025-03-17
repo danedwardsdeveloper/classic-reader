@@ -29,10 +29,10 @@
 
 ## Books with chapter names
 
--  Cranford
--  Treasure Island
--  Anne of Green Gables
--  Little Women
+-  ~~Cranford~~
+-  ~~Treasure Island~~
+-  ~~Anne of Green Gables~~
+-  ~~Little Women~~
 
 ## Books to add
 
