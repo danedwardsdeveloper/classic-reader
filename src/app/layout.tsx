@@ -3,14 +3,28 @@ import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata, Viewport } from 'next'
 
 import './styles.tailwind.css'
-import Menu from '@/components/Menu'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
 
+import logger from '@/library/logger'
+import socialImage from '../../public/images/classicreader.png'
+
+if (!socialImage) {
+	logger.error('@/app/layout.tsx: social image missing')
+}
+
+const metaTitle = 'ClassicReader.org | Read classic novels online.'
+const metaDescription = 'ClassicReader.org is a website for reading classic novels in the browser without any ads, distractions or clutter.'
+
 export const metadata: Metadata = {
-	title: 'Home | ClassicReader.org - Read classic novels online.',
+	title: metaTitle,
 	metadataBase: new URL(dynamicBaseURL),
-	description: 'ClassicReader.org is a website for reading classic novels in the browser without any ads, distractions or clutter.',
+	description: metaDescription,
+	openGraph: {
+		title: metaTitle,
+		description: metaDescription,
+		images: ['images/classicreader.png'],
+	},
 	alternates: {
 		canonical: dynamicBaseURL,
 	},
@@ -30,10 +44,7 @@ export default function RootLayout({
 		<html lang="en-GB" suppressHydrationWarning>
 			<body className=" bg-slate-50">
 				<Providers>
-					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">
-						<Menu />
-						{children}
-					</div>
+					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
 				</Providers>
 			</body>
 			<Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
