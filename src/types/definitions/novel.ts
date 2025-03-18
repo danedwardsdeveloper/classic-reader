@@ -4,7 +4,7 @@ import type { WriterDisplayName, WriterSlug } from './writers'
 export type NovelSlug = keyof typeof novels
 export type NovelDisplayTitle = (typeof novels)[NovelSlug]
 
-interface Chapter {
+export interface Chapter {
 	title?: string
 	content: string[]
 }
