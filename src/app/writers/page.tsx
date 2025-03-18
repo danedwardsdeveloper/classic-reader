@@ -1,7 +1,7 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import Footer from '@/components/Footer'
 import { writers } from '@/library/constants'
-import { metaTitleTemplate } from '@/library/environment/publicVariables'
+import { metaTitleTemplate } from '@/library/environment'
 import { getAllNovels } from '@/library/utilities'
 import type { WriterSlug } from '@/types'
 import type { Metadata } from 'next'

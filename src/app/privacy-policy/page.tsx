@@ -1,6 +1,6 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import Footer from '@/components/Footer'
-import { metaTitleTemplate } from '@/library/environment/publicVariables'
+import { metaTitleTemplate } from '@/library/environment'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import Providers from '@/components/Providers'
-import { dynamicBaseURL } from '@/library/environment/publicVariables'
+import { dynamicBaseURL } from '@/library/environment'
 import type { Metadata, Viewport } from 'next'
 
 import './styles.tailwind.css'

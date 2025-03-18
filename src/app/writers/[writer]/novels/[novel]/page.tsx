@@ -1,7 +1,7 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import ChaptersList from '@/components/ChaptersList'
 import Footer from '@/components/Footer'
-import { metaTitleTemplate } from '@/library/environment/publicVariables'
+import { metaTitleTemplate } from '@/library/environment'
 import { generateNovelPath, getAllNovels, getNovelBySlug } from '@/library/utilities'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'

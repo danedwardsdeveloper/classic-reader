@@ -1,6 +1,6 @@
 import type { LogLevel, LogVerb } from '@/types'
 import { browserColours, logLevels, serverColors } from './constants'
-import { browserLogLevel, serverLogLevel } from './environment/publicVariables'
+import { browserLogLevel, serverLogLevel } from './environment'
 
 const isServer = typeof window === 'undefined'
 

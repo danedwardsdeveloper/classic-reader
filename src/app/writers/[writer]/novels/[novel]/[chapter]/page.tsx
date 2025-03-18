@@ -1,7 +1,7 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import ChapterNavigation from '@/components/ChapterNavigation'
 import Footer from '@/components/Footer'
-import { metadataExtensionPhrases } from '@/library/environment/publicVariables'
+import { metadataExtensionPhrases } from '@/library/environment'
 import logger from '@/library/logger'
 import { getAllNovels, getNovelBySlug } from '@/library/utilities'
 import { generateChapterParam } from '@/library/utilities/definitions/generatePaths'
