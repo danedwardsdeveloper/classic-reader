@@ -6,17 +6,17 @@ export type ChapterStatus = Record<string, Record<number, boolean>>
 
 type LocalStorageContextType = {
 	chapterStatus: ChapterStatus
-	toggleChapter: (bookSlug: string, chapterNumber: number) => void
-	markChapterAsRead: (bookSlug: string, chapterNumber: number) => void
-	markChapterAsUnread: (bookSlug: string, chapterNumber: number) => void
-	getBookChapters: (bookSlug: string) => Record<number, boolean>
-	getNextUnreadChapter: (bookSlug: string, totalChapters?: number) => number | null
+	toggleChapter: (novelSlug: string, chapterNumber: number) => void
+	markChapterAsRead: (novelSlug: string, chapterNumber: number) => void
+	markChapterAsUnread: (novelSlug: string, chapterNumber: number) => void
+	getBookChapters: (novelSlug: string) => Record<number, boolean>
+	getNextUnreadChapter: (novelSlug: string, totalChapters?: number) => number | null
+	getNovelProgress: (chaptersProgressData: Record<number, boolean>) => boolean
 	isLoading: boolean
 }
 
 const LocalStorageContext = createContext<LocalStorageContextType | undefined>(undefined)
 
-// Use a prefix to identify book-related localStorage items
 const prefix = 'book_chapters_'
 
 export function LocalStorageProvider({ children }: { children: ReactNode }) {
@@ -36,8 +36,8 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 					const storedData = localStorage.getItem(key)
 					if (storedData) {
 						const parsed = JSON.parse(storedData)
-						const bookSlug = key.replace(prefix, '')
-						loadedStatus[bookSlug] = parsed
+						const novelSlug = key.replace(prefix, '')
+						loadedStatus[novelSlug] = parsed
 					}
 				} catch (error) {
 					logger.error('Error loading chapter status from localStorage:', error)
@@ -57,10 +57,10 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 
 		try {
 			const entries = Object.entries(chapterStatus)
-			for (const [bookSlug, chapters] of entries) {
+			for (const [novelSlug, chapters] of entries) {
 				if (Object.keys(chapters).length > 0) {
 					// Store with the prefix
-					localStorage.setItem(`${prefix}${bookSlug}`, JSON.stringify(chapters))
+					localStorage.setItem(`${prefix}${novelSlug}`, JSON.stringify(chapters))
 				}
 			}
 		} catch (error) {
@@ -68,17 +68,17 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		}
 	}, [chapterStatus])
 
-	function getBookChapters(bookSlug: string): Record<number, boolean> {
-		return chapterStatus[bookSlug] || {}
+	function getBookChapters(novelSlug: string): Record<number, boolean> {
+		return chapterStatus[novelSlug] || {}
 	}
 
-	function toggleChapter(bookSlug: string, chapterNumber: number) {
+	function toggleChapter(novelSlug: string, chapterNumber: number) {
 		setChapterStatus((previousStatus) => {
-			const bookChapters = previousStatus[bookSlug] || {}
+			const bookChapters = previousStatus[novelSlug] || {}
 
 			return {
 				...previousStatus,
-				[bookSlug]: {
+				[novelSlug]: {
 					...bookChapters,
 					[chapterNumber]: !bookChapters[chapterNumber],
 				},
@@ -86,13 +86,13 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		})
 	}
 
-	function markChapterAsRead(bookSlug: string, chapterNumber: number) {
+	function markChapterAsRead(novelSlug: string, chapterNumber: number) {
 		setChapterStatus((previousStatus) => {
-			const bookChapters = previousStatus[bookSlug] || {}
+			const bookChapters = previousStatus[novelSlug] || {}
 
 			return {
 				...previousStatus,
-				[bookSlug]: {
+				[novelSlug]: {
 					...bookChapters,
 					[chapterNumber]: true,
 				},
@@ -100,13 +100,13 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		})
 	}
 
-	function markChapterAsUnread(bookSlug: string, chapterNumber: number) {
+	function markChapterAsUnread(novelSlug: string, chapterNumber: number) {
 		setChapterStatus((previousStatus) => {
-			const bookChapters = previousStatus[bookSlug] || {}
+			const bookChapters = previousStatus[novelSlug] || {}
 
 			return {
 				...previousStatus,
-				[bookSlug]: {
+				[novelSlug]: {
 					...bookChapters,
 					[chapterNumber]: false,
 				},
@@ -114,8 +114,8 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		})
 	}
 
-	function getNextUnreadChapter(bookSlug: string, totalChapters?: number): number | null {
-		const bookChapters = getBookChapters(bookSlug)
+	function getNextUnreadChapter(novelSlug: string, totalChapters?: number): number | null {
+		const bookChapters = getBookChapters(novelSlug)
 
 		if (Object.keys(bookChapters).length === 0) return 1
 
@@ -132,6 +132,10 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 		return null
 	}
 
+	function getNovelProgress(chaptersProgressData: Record<number, boolean>) {
+		return Object.values(chaptersProgressData).some((hasProgress) => hasProgress)
+	}
+
 	return (
 		<LocalStorageContext.Provider
 			value={{
@@ -141,6 +145,7 @@ export function LocalStorageProvider({ children }: { children: ReactNode }) {
 				markChapterAsUnread,
 				getBookChapters,
 				getNextUnreadChapter,
+				getNovelProgress,
 				isLoading,
 			}}
 		>
