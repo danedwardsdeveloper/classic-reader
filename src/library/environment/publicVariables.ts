@@ -5,10 +5,19 @@ export const isDevelopment = process.env.NODE_ENV === 'development'
 
 export const siteIsLaunched = false
 
-export const bareDomain = 'bare-domain.fly.dev'
+export const bareDomain = 'classic-reader.fly.dev'
 export const productionBaseURL = `https://${bareDomain}`
 export const developmentBaseURL = 'http://localhost:3000'
 export const dynamicBaseURL = isProduction ? productionBaseURL : developmentBaseURL
 
-export const serverLogLevel: LogLevel = 'level4debug'
-export const browserLogLevel: LogLevel = isDevelopment ? 'level4debug' : 'level0none'
+export const serverLogLevel: LogLevel = 'level5debug'
+export const browserLogLevel: LogLevel = isDevelopment ? 'level5debug' : 'level0none'
+
+export const metaTitleTemplate = 'ClassicReader.org - Read classic novels online.'
+
+export const metadataExtensionPhrases = [
+	'ClassicReader.org.',
+	'ClassicReader.org - Read classic novels online.',
+	'Read classic novels online for free at ClassicReader.org.',
+	'ClassicReader.org lets you read classic novels in the browser with no ads, clutter, or distractions.',
+]

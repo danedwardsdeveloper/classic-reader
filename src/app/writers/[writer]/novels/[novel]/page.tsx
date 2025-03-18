@@ -1,61 +1,70 @@
+import BreadCrumbs from '@/components/BreadCrumbs'
 import ChaptersList from '@/components/ChaptersList'
 import Footer from '@/components/Footer'
-import { getAllNovels, getBookBySlug } from '@/library/getAllNovels'
-import { getSlugFromDisplay } from '@/library/getSlugFromDisplay'
+import { metaTitleTemplate } from '@/library/environment/publicVariables'
+import { generateNovelPath, getAllNovels, getNovelBySlug } from '@/library/utilities'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+
+// Landing page for a novel
 
 type ResolvedParams = { writer: string; novel: string }
 type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateStaticParams(): StaticParams {
-	const books = await getAllNovels()
-	const params = books
-		.map((book) => {
-			const writerSlug = getSlugFromDisplay(book.writer)
-			if (!writerSlug) return null
-
-			return {
-				writer: writerSlug,
-				novel: book.slug,
-			}
-		})
-		.filter(Boolean) as ResolvedParams[]
-
-	return params
+	const novels = await getAllNovels()
+	return novels.map((index) => {
+		return {
+			writer: index.writerSlug,
+			novel: index.titleSlug,
+		}
+	})
 }
 
-// Landing page for a novel
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
 	const { novel } = await params
-	const bookData = await getBookBySlug(novel)
-
-	if (!bookData) {
-		return {
-			title: 'Book not found',
-		}
-	}
+	const novelData = await getNovelBySlug(novel)
+	if (!novelData) return { title: 'Book not found' }
 
 	return {
-		title: `${bookData.title} by ${bookData.writer}`,
+		title: `${novelData.titleDisplay} by ${novelData.writerDisplay} | ${metaTitleTemplate}`,
+		description: `Chapters list for ${novelData.titleDisplay} by ${novelData.writerDisplay}, on Classic Reader - a simple website for reading classic books for free.`,
+		alternates: {
+			canonical: generateNovelPath(novelData),
+		},
 	}
 }
 
 export default async function Page({ params }: { params: Params }) {
 	const { novel } = await params
-	const bookData = await getBookBySlug(novel)
-	if (!bookData) return notFound()
+	const novelData = await getNovelBySlug(novel)
+	if (!novelData) return notFound()
 
 	return (
 		<>
-			<div className="flex-1 flex flex-col  max-w-prose w-full mx-auto">
-				<h1>
-					{bookData.title} by {bookData.writer}
-				</h1>
-				<ChaptersList novel={bookData} />
-			</div>
-			<Footer currentNovel={bookData} />
+			<BreadCrumbs
+				currentPageName={novelData.titleDisplay}
+				trail={[
+					{
+						display: 'Writers',
+						href: '/writers',
+					},
+					{
+						display: novelData.writerDisplay,
+						href: `/writers/${novelData.writerSlug}`,
+					},
+					{
+						display: 'Novels',
+						href: `/writers/${novelData.writerSlug}/novels`,
+					},
+				]}
+			/>
+			<h1>
+				{novelData.titleDisplay} by {novelData.writerDisplay}
+			</h1>
+			<ChaptersList novel={novelData} />
+			<Footer currentNovel={novelData} />
 		</>
 	)
 }

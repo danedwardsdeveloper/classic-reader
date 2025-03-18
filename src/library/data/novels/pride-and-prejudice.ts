@@ -1,7 +1,7 @@
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
-	titleDisplay: 'Pride and',
+	titleDisplay: 'Pride and Prejudice',
 	titleSlug: 'pride-and-prejudice',
 	writerDisplay: 'Jane Austen',
 	writerSlug: 'jane-austen',

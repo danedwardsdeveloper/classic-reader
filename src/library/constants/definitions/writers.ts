@@ -10,7 +10,7 @@ export const writers = {
 	'louisa-may-alcott': 'Louisa May Alcott',
 	'lucy-maud-montgomery': 'Lucy Maud Montgomery',
 	'elizabeth-gaskell': 'Elizabeth Gaskell',
-	'e-f-benson': 'E F Benson',
+	// 'e-f-benson': 'E F Benson',
 	'anne-bronte': 'Anne Brontë',
 	'robert-louis-stevenson': 'Robert Louis Stevenson',
 	'william-shakespeare': 'William Shakespeare',

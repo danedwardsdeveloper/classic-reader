@@ -36,12 +36,12 @@ export default function Footer({ currentNovel }: { currentNovel?: Novel }) {
 					{currentNovel && (
 						<li>
 							<Link
-								href={`https://github.com/danedwardsdeveloper/classic-reader/blob/main/src/library/data/novels/${currentNovel.slug}.ts`}
+								href={`https://github.com/danedwardsdeveloper/classic-reader/blob/main/src/library/data/novels/${currentNovel.titleSlug}.ts`}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="link-primary flex gap-x-1 items-center text-balance"
 							>
-								{`Edit ${currentNovel.title} on GitHub`}
+								{`Edit ${currentNovel.titleDisplay} on GitHub`}
 								<ArrowUpRightIcon className="size-4" />
 							</Link>
 						</li>

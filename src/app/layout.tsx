@@ -3,17 +3,16 @@ import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata, Viewport } from 'next'
 
 import './styles.tailwind.css'
+import logger from '@/library/logger'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
-
-import logger from '@/library/logger'
 import socialImage from '../../public/images/classicreader.png'
 
 if (!socialImage) {
 	logger.error('@/app/layout.tsx: social image missing')
 }
 
-const metaTitle = 'ClassicReader.org | Read classic novels online.'
+const metaTitle = 'ClassicReader.org - Read classic novels online.'
 const metaDescription = 'ClassicReader.org is a website for reading classic novels in the browser without any ads, distractions or clutter.'
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
 		images: ['images/classicreader.png'],
 	},
 	alternates: {
-		canonical: dynamicBaseURL,
+		canonical: '/',
 	},
 }
 

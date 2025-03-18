@@ -1,7 +1,16 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import Footer from '@/components/Footer'
 import { SecondaryNavigation } from '@/components/SecondaryNavigation'
+import { metaTitleTemplate } from '@/library/environment/publicVariables'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: `About ${metaTitleTemplate}`,
+	alternates: {
+		canonical: '/about',
+	},
+}
 
 export default function AboutPage() {
 	const bullets = [
