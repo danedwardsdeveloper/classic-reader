@@ -1,4 +1,5 @@
 export const novels = {
+	clarissa: 'Clarissa',
 	'anne-of-the-island': 'Anne of the Island',
 	'anne-of-avonlea': 'Anne of Avonlea',
 	'pride-and-prejudice': 'Pride and Prejudice',

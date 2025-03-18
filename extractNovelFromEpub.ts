@@ -92,10 +92,10 @@ async function extractNovelFromEpub({ titleSlug }: { titleSlug: NovelSlug }): Pr
 	})
 }
 
-const titleDisplay: NovelDisplayTitle = 'The Mill on the Floss'
-const titleSlug: NovelSlug = 'the-mill-on-the-floss'
-const writerDisplay: WriterDisplayName = 'George Eliot'
-const writerSlug: WriterSlug = 'george-eliot'
+const titleDisplay: NovelDisplayTitle = 'Clarissa'
+const titleSlug: NovelSlug = 'clarissa'
+const writerDisplay: WriterDisplayName = 'Samuel Richardson'
+const writerSlug: WriterSlug = 'samuel-richardson'
 ;(async () => {
 	try {
 		await extractNovelFromEpub({ titleSlug })

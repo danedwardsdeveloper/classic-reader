@@ -1,5 +1,6 @@
 export const writers = {
 	'charlotte-bronte': 'Charlotte Brontë',
+	'samuel-richardson': 'Samuel Richardson',
 	'jane-austen': 'Jane Austen',
 	'bram-stoker': 'Bram Stoker',
 	'gustave-flaubert': 'Gustave Flaubert',

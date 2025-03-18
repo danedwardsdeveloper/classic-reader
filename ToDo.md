@@ -1,7 +1,6 @@
 ## Tonight
 
--  Add chapter name handling
--  Put chapter names in the meta description
+-  Clarissa has some weird stuff at the end
 
 ## Later
 
