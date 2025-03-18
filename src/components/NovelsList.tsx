@@ -1,5 +1,5 @@
 'use client'
-import { generateChapterPath, generateNovelPath } from '@/library/utilities/definitions/generatePaths'
+import { generateChapterPath, generateNovelPath } from '@/library/utilities/client/definitions/generatePaths'
 import { useLocalStorage } from '@/providers/localStorage'
 import type { Novel } from '@/types'
 import clsx from 'clsx'

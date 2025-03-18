@@ -1,12 +1,13 @@
 'use client'
+import { generateChapterPath } from '@/library/utilities/client'
 import { useLocalStorage } from '@/providers/localStorage'
 import type { Novel } from '@/types'
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function ChapterNavigation({ novelData, currentPage }: { novelData: Novel; currentPage: number }) {
-	// const router = useRouter()
+	const router = useRouter()
 	const { markChapterAsRead } = useLocalStorage()
 
 	const totalChapters = novelData.chapters.length
@@ -20,13 +21,13 @@ export default function ChapterNavigation({ novelData, currentPage }: { novelDat
 	function handlePrevious() {
 		if (isFirstChapter) return null
 		// ToDo: fix this
-		// router.push(generateChapterPath({ novelData: novelData, oneIndexedChapterNumber: previousPage }))
+		router.push(generateChapterPath({ novelData: novelData, oneIndexedChapterNumber: previousPage }))
 	}
 
 	function handleNext() {
 		if (isLastChapter) return null
 		markChapterAsRead(novelData.titleSlug, currentPage - 1)
-		// router.push(generateChapterPath({ novelData: novelData, oneIndexedChapterNumber: nextPage }))
+		router.push(generateChapterPath({ novelData: novelData, oneIndexedChapterNumber: nextPage }))
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import Footer from '@/components/Footer'
 import NovelsList from '@/components/NovelsList'
-import { getAllNovels } from '@/library/utilities'
+import { getAllNovels } from '@/library/utilities/server'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 

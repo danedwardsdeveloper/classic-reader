@@ -20,7 +20,7 @@ export async function getAllNovels(): Promise<Novel[]> {
 				const slug = filename.replace(/\.(ts)$/, '')
 
 				// Path alias won't work here
-				const novelModule = await import(`../../data/novels/${slug}`)
+				const novelModule = await import(`../../../data/novels/${slug}`)
 				const novel = novelModule.novel as Novel
 
 				if (slug !== novel.titleSlug) {
