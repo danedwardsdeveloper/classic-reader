@@ -41,7 +41,7 @@ export function optimiseMetadata({
 	if (bestPhrase) result += separator + bestPhrase
 
 	if (result.length < minimum) {
-		logger.warn(`Metadata is too short. Minimum: ${minimum}. Actual: ${result.length}`)
+		logger.warn(`Meta${type} is too short. Minimum: ${minimum}. Actual: ${result.length}. ${result}`)
 	}
 
 	return result
