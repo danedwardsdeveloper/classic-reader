@@ -3,7 +3,6 @@ import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 export default function Footer({ currentNovel }: { currentNovel?: Novel }) {
-	// ToDo: set up Ko-Fi and add links
 	return (
 		<footer className="mt-32">
 			<nav className="flex flex-col md:flex-row">
@@ -21,14 +20,26 @@ export default function Footer({ currentNovel }: { currentNovel?: Novel }) {
 				</ul>
 				<ul className=" flex flex-col w-full gap-y-3 justify-end md:items-end text-right">
 					<li>
-						<Link href="/" className="link-primary flex gap-x-1 items-center">
+						<Link
+							href="https://ko-fi.com/classicreader"
+							target="_blank"
+							rel="noopener noreferrer"
+							title='"Donate to ClassicReader.org on ko-fi.com. Opens in a new tab.'
+							className="link-primary flex gap-x-1 items-center"
+						>
 							Make a donation
 							<ArrowUpRightIcon className="size-4" />
 						</Link>
 					</li>
 					<li className="flex gap-x-1">
 						<span>Site by </span>
-						<Link href="https://danedwardsdeveloper.com/" className="flex gap-x-1 items-center link-primary">
+						<Link
+							href="https://danedwardsdeveloper.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+							title="Developer website of the creator of ClassicReader.org, Dan Edwards. Opens in a new tab."
+							className="flex gap-x-1 items-center link-primary"
+						>
 							Dan Edwards
 							<ArrowUpRightIcon className="size-4" />
 						</Link>
@@ -40,6 +51,7 @@ export default function Footer({ currentNovel }: { currentNovel?: Novel }) {
 								target="_blank"
 								rel="noopener noreferrer"
 								className="link-primary flex gap-x-1 items-center text-balance"
+								title={`Edit ${currentNovel.titleDisplay} on GitHub. Opens in a new tab.`}
 							>
 								{`Edit ${currentNovel.titleDisplay} on GitHub`}
 								<ArrowUpRightIcon className="size-4" />
