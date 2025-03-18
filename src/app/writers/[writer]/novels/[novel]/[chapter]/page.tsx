@@ -119,7 +119,7 @@ export default async function ChapterPage({ params }: { params: Params }) {
 				]}
 			/>
 			<h1>{title}</h1>
-			<div className="flex flex-col gap-y-8 max-w-prose text-lg">
+			<div className="flex flex-col gap-y-8 max-w-prose text-lg text-zinc-800">
 				{zeroIndexedChapter.content.map((paragraph, index) => (
 					<p
 						key={`${paragraph.slice(0, 10)}-${index}`} // Handle deliberate repeated paragraphs
