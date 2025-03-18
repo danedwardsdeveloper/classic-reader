@@ -27,14 +27,14 @@ export default function PrivacyPolicyPage() {
 
 				<h3>Cookies</h3>
 				<p className="mb-4">
-					ClassicReader.org doesn't use any cookies whatsoever. There are no tracking, advertising, or "necessary" cookies.
+					{`ClassicReader.org doesn't use any cookies whatsoever. There are no tracking, advertising, or "necessary" cookies.`}
 				</p>
-				<p className="mb-16">We don't have a cookie consent banner because we don't use cookies. </p>
+				<p className="mb-16">{`We don't have a cookie consent banner because we don't use cookies.`}</p>
 
 				<h3>Local storage</h3>
-				<p className="mb-4">We use your browser's local storage functionality to save your reading progress.</p>
+				<p className="mb-4">{`We use your browser's local storage functionality to save your reading progress.`}</p>
 				<p className="mb-4">
-					For example, if you're halfway through{' '}
+					{`For example, if you're halfway through `}
 					<Link href="/writers/lucy-maud-montgomery/novels/anne-of-green-gables" className="italic link-primary">
 						Anne of Green Gables
 					</Link>{' '}
@@ -42,8 +42,9 @@ export default function PrivacyPolicyPage() {
 				</p>
 				<p className="mb-4">
 					This data (stored with keys like{' '}
-					<span className="font-mono bg-zinc-100 rounded-lg border border-zinc-200 px-2 py-1">book_chapters_anne-of-green-gables</span>)
-					never leaves your device. It's stored locally on your computer or phone, not on our servers.
+					<span className="font-mono bg-zinc-100 rounded-lg border border-zinc-200 px-2 py-1">book_chapters_anne-of-green-gables</span>
+					{`)
+					never leaves your device. It's stored locally on your computer or phone, not on our servers.`}
 				</p>
 				<p className="mb-16">You can clear this data anytime through your browser settings, which will reset your reading progress. </p>
 
@@ -53,7 +54,7 @@ export default function PrivacyPolicyPage() {
 					<Link href="https://www.simpleanalytics.com/" className="link-primary" target="_blank" rel="noopener noreferrer">
 						Simple Analytics
 					</Link>
-					, a privacy-focused analytics service that doesn't track individuals.
+					{`, a privacy-focused analytics service that doesn't track individuals.`}
 				</p>
 				<p className="mb-4">We can see general, anonymous information like:</p>
 				<ul className="list-disc list-inside text-lg text-zinc-800 [&>li]:mb-2 mb-8 marker:text-zinc-500">
@@ -63,8 +64,8 @@ export default function PrivacyPolicyPage() {
 					<li>Which devices and browsers visitors are using</li>
 				</ul>
 				<p className="mb-4">
-					But importantly, SimpleAnalytics doesn't use cookies, doesn't collect personal data, and doesn't build profiles of individual
-					users.
+					{`But importantly, SimpleAnalytics doesn't use cookies, doesn't collect personal data, and doesn't build profiles of individual
+					users.`}
 				</p>
 				<p className="mb-16">{`We can't identify you or track you across websites.`}</p>
 
@@ -89,7 +90,7 @@ export default function PrivacyPolicyPage() {
 
 				<h3>Changes to this policy</h3>
 				<p className="mb-4">{`If we make any changes to this privacy policy, we'll update it here.`}</p>
-				<p className="mb-20">But don't worry - our commitment to privacy won't change.</p>
+				<p className="mb-20">{`But don't worry - our commitment to privacy won't change.`}</p>
 				<p className="italic font-zinc-600">Updated Tuesday, March 18, 2025</p>
 			</div>
 			<Footer />
