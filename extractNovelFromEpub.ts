@@ -57,11 +57,19 @@ async function extractNovelFromEpub({ titleSlug }: { titleSlug: NovelSlug }): Pr
 					chapters,
 				}
 
-				const outputDir = path.join(process.cwd(), 'src', 'library', 'data', 'novels')
-				const outputPath = path.join(outputDir, `${titleSlug}.ts`)
+				const outputPath = path.join(process.cwd(), 'src', 'library', 'data', 'novels', `${titleSlug}.ts`)
 
-				const output = `
-		import type { Novel } from '@/types'
+				const existingFile = await fs
+					.stat(outputPath)
+					.then(() => true)
+					.catch(() => false)
+
+				if (existingFile) {
+					logger.error('File already exists: ', outputPath)
+					return resolve()
+				}
+
+				const output = `import type { Novel } from '@/types'
 		
 		export const novel: Novel = {
 		  titleDisplay: ${JSON.stringify(novel.titleDisplay)},
@@ -84,10 +92,10 @@ async function extractNovelFromEpub({ titleSlug }: { titleSlug: NovelSlug }): Pr
 	})
 }
 
-const titleDisplay: NovelDisplayTitle = 'Anne of the Island'
-const titleSlug: NovelSlug = 'anne-of-the-island'
-const writerDisplay: WriterDisplayName = 'Lucy Maud Montgomery'
-const writerSlug: WriterSlug = 'lucy-maud-montgomery'
+const titleDisplay: NovelDisplayTitle = 'The Mill on the Floss'
+const titleSlug: NovelSlug = 'the-mill-on-the-floss'
+const writerDisplay: WriterDisplayName = 'George Eliot'
+const writerSlug: WriterSlug = 'george-eliot'
 ;(async () => {
 	try {
 		await extractNovelFromEpub({ titleSlug })

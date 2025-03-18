@@ -5,6 +5,7 @@ export const writers = {
 	'gustave-flaubert': 'Gustave Flaubert',
 	'leo-tolstoy': 'Leo Tolstoy',
 	'thomas-hardy': 'Thomas Hardy',
+	'montague-rhodes-james': 'Montague Rhodes James',
 	'george-eliot': 'George Eliot',
 	'fyodor-dostoevsky': 'Fyodor Dostoevsky',
 	'louisa-may-alcott': 'Louisa May Alcott',
