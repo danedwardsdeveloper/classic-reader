@@ -22,7 +22,7 @@
     @apply transition-colors duration-300
   }
   .link-primary {
-    @apply link text-zinc-600 underline-offset-2 hover:text-blue-600 active:text-blue-700
+    @apply link text-zinc-600 hover:text-blue-600 active:text-blue-700
   }
   .button {
     @apply rounded-lg px-3 py-1 font-medium text-sm border-2  transition-all duration-300 shadow active:shadow-none;
