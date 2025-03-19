@@ -1,4 +1,3 @@
-import Providers from '@/components/Providers'
 import { dynamicBaseURL } from '@/library/environment'
 import type { Metadata, Viewport } from 'next'
 
@@ -42,9 +41,7 @@ export default function RootLayout({
 	return (
 		<html lang="en-GB" suppressHydrationWarning>
 			<body className=" bg-slate-50">
-				<Providers>
-					<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
-				</Providers>
+				<div className="min-h-screen flex flex-col w-full max-w-prose mx-auto py-12 px-4 md:px-12 bg-white">{children}</div>
 			</body>
 			<Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
 		</html>
