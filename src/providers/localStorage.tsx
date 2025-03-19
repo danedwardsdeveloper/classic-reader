@@ -21,10 +21,9 @@ const prefix = 'book_chapters_'
 
 export function LocalStorageProvider({ children }: { children: ReactNode }) {
 	const [chapterStatus, setChapterStatus] = useState<ChapterStatus>({})
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
-		if (typeof window === 'undefined') return
 		setIsLoading(true)
 
 		try {
