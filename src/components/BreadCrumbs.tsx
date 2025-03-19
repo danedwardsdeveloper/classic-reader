@@ -1,10 +1,11 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 import Link from 'next/link'
 
 type Crumb = { display: string; href: string }
 
 interface Props {
-	currentPageName?: string
+	currentPageName?: string | 'Not found'
 	trail?: Crumb[]
 	isHomePage?: boolean
 	homeOnly?: boolean
@@ -21,13 +22,12 @@ export default function BreadCrumbs({ currentPageName, trail, isHomePage, homeOn
 		)
 	}
 
-	// Build the trail based on homeOnly
-	const breadcrumbs = homeOnly ? [{ display: homeDisplayText, href: '/' }] : [{ display: homeDisplayText, href: '/' }, ...(trail || [])]
+	const resolvedTrail = homeOnly ? [{ display: homeDisplayText, href: '/' }] : [{ display: homeDisplayText, href: '/' }, ...(trail || [])]
 
 	return (
 		<nav aria-label="Breadcrumb" className="mb-28 sm:mb-20">
-			<ol className="flex flex-wrap w-full items-center gap-5 sm:gap-3">
-				{breadcrumbs.map((item) => (
+			<ol className="flex flex-wrap w-full items-center gap-2 sm:gap-3">
+				{resolvedTrail.map((item) => (
 					<li key={item.href} className="flex items-center">
 						<Link href={item.href} className="link-primary mr-2 sm:mr-3">
 							{item.display}
@@ -35,7 +35,7 @@ export default function BreadCrumbs({ currentPageName, trail, isHomePage, homeOn
 						<ChevronRightIcon className="size-4 text-zinc-500" />
 					</li>
 				))}
-				<li className="font-medium">{currentPageName}</li>
+				<li className={clsx('font-medium', currentPageName === 'Not found' && 'text-red-600')}>{currentPageName}</li>
 			</ol>
 		</nav>
 	)
