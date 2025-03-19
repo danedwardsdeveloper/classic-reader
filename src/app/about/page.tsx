@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
 	const bullets = [
 		'Distraction-free reading',
-		'Saves your progress without using cookies',
 		'Add, request or edit the collection on GitHub',
 		'Sustained solely by generous donations from readers like you',
 	]

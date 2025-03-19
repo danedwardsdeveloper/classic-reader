@@ -9,24 +9,15 @@ export default async function Home() {
 	return (
 		<>
 			<BreadCrumbs isHomePage />
-			<div className="flex-1 max-w-prose w-full mx-auto">
-				<div className="flex flex-col w-full">
-					<div className="flex flex-col gap-y-6">
-						<div className="text-lg mb-20">
-							<p className="mb-6">
-								ClassicReader.org is a website that allows you to read classic novels in the browser without any distractions.
-							</p>
-							<p>
-								{`It's completely free and sustained solely by generous donations from readers like you. `}
-								<Link href="/about" className="link-primary">
-									Find out more.
-								</Link>
-							</p>
-						</div>
-						<h2>Novels</h2>
-						<NovelsList novels={novels} />
-					</div>
-				</div>
+			<div className="flex-1 flex-col max-w-prose w-full mx-auto">
+				<p className="text-lg mb-20 text-balance">
+					ClassicReader.org allows you to read classic novels in the browser without any distractions.{' '}
+					<Link href="/about" className="link-primary">
+						Find out more.
+					</Link>
+				</p>
+				<h2>Novels</h2>
+				<NovelsList novels={novels} />
 			</div>
 			<Footer />
 		</>

@@ -59,9 +59,8 @@ export default async function NovelOverviewPage({ params }: { params: NovelPageP
 					},
 				]}
 			/>
-			<h1>
-				{novelData.titleDisplay} by {novelData.writerDisplay}
-			</h1>
+			<h3>{novelData.writerDisplay}</h3>
+			<h1>{novelData.titleDisplay}</h1>
 			<ChaptersList novel={novelData} />
 			<Footer currentNovel={novelData} />
 		</>
