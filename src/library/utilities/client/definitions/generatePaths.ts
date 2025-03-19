@@ -1,6 +1,10 @@
-import type { Novel } from '@/types'
+import type { Novel, WriterSlug } from '@/types'
 import urlJoin from 'proper-url-join'
 import slugify from 'slugify'
+
+export function generateWriterPath(writerSlug: WriterSlug) {
+	return urlJoin('/writers', writerSlug, 'novels')
+}
 
 export function generateNovelPath(novelData: Novel): string {
 	// Leading slash is essential for Link behaviour
