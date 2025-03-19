@@ -8,6 +8,7 @@ import { optimiseMetadata } from '@/library/utilities/client/definitions/optimis
 import { getAllNovels, getNovelBySlug } from '@/library/utilities/server'
 import type { Novel } from '@/types'
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 interface ResolvedParams {
 	writer: string
@@ -90,9 +91,12 @@ export default async function ChapterPage({ params }: { params: Params }) {
 	const currentChapterNumber = Number(chapterSlug.split('-')[1])
 	const novelData = await getNovelBySlug(novel)
 
-	if (!novelData) return null
+	if (!novelData) return notFound()
 
 	const zeroIndexedChapter = novelData.chapters[currentChapterNumber - 1]
+
+	if (!zeroIndexedChapter) return notFound()
+
 	const { title } = renderChapterNames(novelData, currentChapterNumber)
 
 	return (
