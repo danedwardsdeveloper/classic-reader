@@ -19,7 +19,9 @@ export function generateChapterParam({
 	const chapter = novelData.chapters[zeroIndexedChapterNumber]
 	const chapterSlugBase = `chapter-${oneIndexedChapterNumber}`
 
-	return chapter.title ? `${chapterSlugBase}-${slugify(chapter.title, { lower: true, strict: true })}` : chapterSlugBase
+	if (!chapter?.title) return chapterSlugBase
+
+	return `${chapterSlugBase}-${slugify(chapter.title, { lower: true, strict: true })}`
 }
 
 export function generateChapterPath({ novelData, oneIndexedChapterNumber }: { novelData: Novel; oneIndexedChapterNumber: number }): string {
