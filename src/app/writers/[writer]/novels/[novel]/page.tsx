@@ -7,10 +7,8 @@ import { getAllNovels, getNovelBySlug } from '@/library/utilities/server'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-// Landing page for a novel
-
 type ResolvedParams = { writer: string; novel: string }
-type Params = Promise<ResolvedParams>
+export type NovelPageParams = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateStaticParams(): StaticParams {
@@ -23,7 +21,7 @@ export async function generateStaticParams(): StaticParams {
 	})
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: NovelPageParams }): Promise<Metadata> {
 	const { novel } = await params
 	const novelData = await getNovelBySlug(novel)
 	if (!novelData) return { title: 'Book not found' }
@@ -37,7 +35,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	}
 }
 
-export default async function Page({ params }: { params: Params }) {
+export default async function NovelOverviewPage({ params }: { params: NovelPageParams }) {
 	const { novel } = await params
 	const novelData = await getNovelBySlug(novel)
 	if (!novelData) return notFound()

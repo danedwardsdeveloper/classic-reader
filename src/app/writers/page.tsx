@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 // List of writers
-export default async function Page() {
+export default async function AllWritersPage() {
 	const allNovels = await getAllNovels()
 	const writersWithNovels = new Set(allNovels.map((novel) => novel.writerSlug))
 

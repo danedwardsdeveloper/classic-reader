@@ -12,7 +12,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-// All novels, poems & plays by one writer
 type ResolvedParams = { writer: string }
 type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
@@ -41,7 +40,7 @@ export async function generateStaticParams(): StaticParams {
 	}))
 }
 
-export default async function WriterPage({ params }: { params: Params }) {
+export default async function SpecificWriterPage({ params }: { params: Params }) {
 	const { writer: writerSlug } = await params
 	const allNovels = await getAllNovels()
 	const filteredNovels = allNovels.filter((book) => book.writerSlug === writerSlug)

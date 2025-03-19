@@ -7,13 +7,9 @@ import { getAllNovels } from '@/library/utilities/server'
 import type { WriterSlug } from '@/types'
 import { notFound } from 'next/navigation'
 
-// All novels by a particular writer
-
 type ResolvedParams = { writer: string }
 type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
-
-// ToDo: generate metadata
 
 export async function generateStaticParams(): StaticParams {
 	return Object.keys(writers).map((authorKey) => ({
@@ -21,7 +17,7 @@ export async function generateStaticParams(): StaticParams {
 	}))
 }
 
-export default async function WriterPage({ params }: { params: Params }) {
+export default async function WriterNovelsPage({ params }: { params: Params }) {
 	const { writer: writerSlug } = await params
 	const allNovels = await getAllNovels()
 	const writerDisplayName = getWriterDisplayName(writerSlug as WriterSlug)
