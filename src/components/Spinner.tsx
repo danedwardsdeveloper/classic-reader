@@ -4,12 +4,12 @@ export default function Spinner({
 	colour = 'text-blue-600',
 	classes,
 }: {
-	colour?: 'text-blue-600' | 'text-white'
+	colour?: 'text-blue-600' | 'text-white' | 'text-zinc-300'
 	classes?: string
 }) {
 	return (
 		<svg
-			className={clsx('h-7 w-7 animate-spin', colour, classes)}
+			className={clsx('size-7 animate-spin', colour, classes)}
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
