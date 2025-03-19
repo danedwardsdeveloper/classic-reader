@@ -9,6 +9,7 @@ export default function ChaptersList({ novel }: { novel: Novel }) {
 	const { isLoading, getBookChapters, toggleChapter } = useLocalStorage()
 	const checkedChapters = getBookChapters(novel.titleSlug)
 
+	// ToDo: Possibly replace this single spinner with many spinners in place of the checkboxes
 	if (isLoading) return <Spinner />
 
 	return (
@@ -25,7 +26,7 @@ export default function ChaptersList({ novel }: { novel: Novel }) {
 						/>
 						<Link
 							href={`/writers/${novel.writerSlug}/novels/${novel.titleSlug}/chapter-${index + 1}${chapter.title ? `-${slugify(chapter.title, { lower: true, strict: true })}` : ''}`}
-							className="group flex w-full"
+							className="group flex items-center w-full"
 						>
 							<span className="text-lg whitespace-nowrap link-primary group-hover:text-blue-500 group-active:text-blue-600">
 								Chapter {index + 1}
