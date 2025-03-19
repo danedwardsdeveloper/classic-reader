@@ -44,7 +44,7 @@ export default function NovelsList({ novels }: { novels: Novel[] }) {
 		}
 
 		return (
-			<Link href={nextChapterPath} className="link text-blue-600 hover:text-blue-500 active:text-blue-400">
+			<Link href={nextChapterPath} className="link-primary">
 				Start reading
 			</Link>
 		)
@@ -71,7 +71,7 @@ export default function NovelsList({ novels }: { novels: Novel[] }) {
 				const writerPath = generateWriterPath(novelData.writerSlug)
 
 				return (
-					<li key={novelData.titleSlug}>
+					<li key={novelData.titleSlug} className="group">
 						<div
 							className={clsx(
 								'relative pl-5 mt-10',
@@ -80,7 +80,7 @@ export default function NovelsList({ novels }: { novels: Novel[] }) {
 									? 'before:bg-green-500 before:group-hover:bg-green-600'
 									: hasProgress
 										? 'before:bg-amber-500 before:group-hover:bg-amber-600'
-										: 'before:bg-gray-200 before:group-hover:bg-gray-300',
+										: 'before:bg-zinc-200 before:group-hover:bg-zinc-300',
 							)}
 						>
 							<Link href={overviewPath} className="block text-xl text-zinc-800 font-medium link hover:opacity-90 active:opacity-80">
