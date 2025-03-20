@@ -16,3 +16,4 @@ For more details about this project, please see the [project write-up](https://d
 -  [Next.js 15 App router](https://nextjs.org/)
 -  [Tailwind](https://tailwindcss.com/)
 -  [epub](https://www.npmjs.com/package/epub) e-book parser
+-  [Simple Analytics](https://www.simpleanalytics.com/) for privacy-first analytics without cookies
