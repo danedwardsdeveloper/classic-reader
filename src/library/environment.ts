@@ -3,7 +3,7 @@ import type { LogLevel } from '@/types'
 export const isProduction = process.env.NODE_ENV === 'production'
 export const isDevelopment = process.env.NODE_ENV === 'development'
 
-export const siteIsLaunched = false
+export const siteIsLaunched = true
 export const freeBareDomain = 'classic-reader.vercel.app'
 export const customBareDomain = 'classicreader.org'
 export const productionBaseURL = `https://${siteIsLaunched ? customBareDomain : freeBareDomain}`
