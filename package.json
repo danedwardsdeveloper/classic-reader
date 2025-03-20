@@ -4,11 +4,7 @@
 		"build": "next build",
 		"start": "tsx testServer.ts",
 		"lint": "next lint",
-		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
-		"test": "vitest",
-		"links": "linkinator http://localhost:3000 --recurse --timeout 20000 --skip \"(https://ko-fi.com/classicreader|danedwardsdeveloper\\.com)\"",
-		"predeploy": "pnpm format && pnpm lint && pnpm build",
-		"deploy": "fly deploy"
+		"links": "linkinator http://localhost:3000 --recurse --timeout 20000 --skip \"(https://ko-fi.com/classicreader|danedwardsdeveloper\\.com)\""
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.2.0",
