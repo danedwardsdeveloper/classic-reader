@@ -3,7 +3,7 @@ export const basicMessages = {
 	serverError: 'server error',
 	parametersMissing: 'parameters missing',
 	databaseError: 'database error',
-} as const;
+} as const
 
 export const authenticationMessages = {
 	invalidCredentials: 'invalid credentials',
@@ -14,4 +14,4 @@ export const authenticationMessages = {
 	emailNotConfirmed: 'email not confirmed',
 	unauthorised: 'unauthorised',
 	authorisationError: 'authorisation error',
-} as const;
+} as const

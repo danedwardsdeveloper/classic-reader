@@ -1,6 +1,6 @@
-import type { Book, Chapter as SchemaChapter, CollectionPage, Organization, WebSite, WithContext } from 'schema-dts'
-import type { Novel } from '@/types'
 import { serverSideBaseUrl } from '@/library/serverEnvironment'
+import type { Novel } from '@/types'
+import type { Book, CollectionPage, Organization, Chapter as SchemaChapter, WebSite, WithContext } from 'schema-dts'
 
 export function generateWebsiteSchema(): WithContext<WebSite> {
 	return {
@@ -55,11 +55,7 @@ export function generateBookSchema(novel: Novel): WithContext<Book> {
 	}
 }
 
-export function generateChapterSchema(
-	novel: Novel,
-	chapterIndex: number,
-	chapterSlug: string,
-): WithContext<SchemaChapter> {
+export function generateChapterSchema(novel: Novel, chapterIndex: number, chapterSlug: string): WithContext<SchemaChapter> {
 	const chapter = novel.chapters[chapterIndex]
 	const chapterNumber = chapterIndex + 1
 
@@ -82,11 +78,7 @@ export function generateChapterSchema(
 	}
 }
 
-export function generateCollectionPageSchema(
-	novels: Novel[],
-	pageTitle: string,
-	pageUrl: string,
-): WithContext<CollectionPage> {
+export function generateCollectionPageSchema(novels: Novel[], pageTitle: string, pageUrl: string): WithContext<CollectionPage> {
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'CollectionPage',
