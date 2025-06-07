@@ -1,8 +1,9 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import ChaptersList from '@/components/ChaptersList'
 import Footer from '@/components/Footer'
+import StructuredData from '@/components/StructuredData'
 import { metaTitleTemplate } from '@/library/environment'
-import { generateNovelPath } from '@/library/utilities/client'
+import { generateNovelPath, generateBookSchema } from '@/library/utilities/client'
 import { getAllNovels, getNovelBySlug } from '@/library/utilities/server'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -42,6 +43,7 @@ export default async function NovelOverviewPage({ params }: { params: NovelPageP
 
 	return (
 		<>
+			<StructuredData data={generateBookSchema(novelData)} />
 			<BreadCrumbs
 				currentPageName={novelData.titleDisplay}
 				trail={[

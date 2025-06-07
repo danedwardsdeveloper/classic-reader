@@ -1,10 +1,12 @@
 import BreadCrumbs from '@/components/BreadCrumbs'
 import ChapterNavigation from '@/components/ChapterNavigation'
 import Footer from '@/components/Footer'
+import StructuredData from '@/components/StructuredData'
 import { metadataExtensionPhrases } from '@/library/environment'
 import logger from '@/library/logger'
 import { generateChapterParam } from '@/library/utilities/client/definitions/generatePaths'
 import { optimiseMetadata } from '@/library/utilities/client/definitions/optimiseMetadata'
+import { generateChapterSchema } from '@/library/utilities/client'
 import { getAllNovels, getNovelBySlug } from '@/library/utilities/server'
 import type { Novel } from '@/types'
 import type { Metadata } from 'next'
@@ -101,6 +103,7 @@ export default async function ChapterPage({ params }: { params: Params }) {
 
 	return (
 		<>
+			<StructuredData data={generateChapterSchema(novelData, currentChapterNumber - 1, chapterSlug)} />
 			<BreadCrumbs
 				currentPageName={`Chapter ${currentChapterNumber}`}
 				trail={[
