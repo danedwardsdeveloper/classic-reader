@@ -24,8 +24,35 @@ export default function BreadCrumbs({ currentPageName, trail, isHomePage, homeOn
 
 	const resolvedTrail = homeOnly ? [{ display: homeDisplayText, href: '/' }] : [{ display: homeDisplayText, href: '/' }, ...(trail || [])]
 
+	const breadcrumbSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			...resolvedTrail.map((item, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				name: item.display,
+				item: `https://classicreader.org${item.href}`,
+			})),
+			...(currentPageName
+				? [
+						{
+							'@type': 'ListItem',
+							position: resolvedTrail.length + 1,
+							name: currentPageName,
+						},
+					]
+				: []),
+		],
+	}
+
 	return (
 		<nav aria-label="Breadcrumb" className="mb-28 sm:mb-20">
+			<script
+				type="application/ld+json"
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: <build-time only>
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+			/>
 			<ol className="flex flex-wrap w-full items-center gap-2 sm:gap-3">
 				{resolvedTrail.map((item) => (
 					<li key={item.href} className="flex items-center">
