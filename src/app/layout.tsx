@@ -1,27 +1,21 @@
-import { dynamicBaseURL } from '@/library/environment'
 import type { Metadata, Viewport } from 'next'
-
 import './styles.tailwind.css'
-import logger from '@/library/logger'
+import { siteSocialImage } from '@/library/data/images'
+import { serverSideBaseUrl } from '@/library/serverEnvironment'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
-import socialImage from '../../public/images/classicreader.png'
-
-if (!socialImage) {
-	logger.error('@/app/layout.tsx: social image missing')
-}
 
 const metaTitle = 'ClassicReader.org - Read classic novels online.'
 const metaDescription = 'ClassicReader.org is a website for reading classic novels in the browser without any ads, distractions or clutter.'
 
 export const metadata: Metadata = {
 	title: metaTitle,
-	metadataBase: new URL(dynamicBaseURL),
+	metadataBase: new URL(serverSideBaseUrl),
 	description: metaDescription,
 	openGraph: {
 		title: metaTitle,
 		description: metaDescription,
-		images: ['images/classicreader.png'],
+		images: [siteSocialImage.relative],
 	},
 	alternates: {
 		canonical: '/',
