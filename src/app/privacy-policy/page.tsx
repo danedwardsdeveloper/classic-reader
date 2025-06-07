@@ -7,7 +7,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
 	title: `Privacy policy ${metaTitleTemplate}`,
 	alternates: {
-		canonical: '/about',
+		canonical: '/privacy-policy',
 	},
 }
 
