@@ -55,6 +55,7 @@ async function extractNovelFromEpub({ titleSlug }: { titleSlug: NovelSlug }): Pr
 					titleDisplay,
 					titleSlug,
 					chapters,
+					updated: new Date(),
 				}
 
 				const outputPath = path.join(process.cwd(), 'src', 'library', 'data', 'novels', `${titleSlug}.ts`)
