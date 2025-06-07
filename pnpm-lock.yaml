@@ -87,6 +87,9 @@ importers:
       schema-dts:
         specifier: ^1.1.5
         version: 1.1.5
+      string-optimiser:
+        specifier: ^1.0.5
+        version: 1.0.5
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14
@@ -2467,6 +2470,9 @@ packages:
   strict-uri-encode@2.0.0:
     resolution: {integrity: sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==}
     engines: {node: '>=4'}
+
+  string-optimiser@1.0.5:
+    resolution: {integrity: sha512-aMlm4/Ygpas2F1PCFqOVoqNFVkbsWX7g7DAUVtBSVm0qnuPnBshX4WpLozSySM26rmOKzYtaYS03OdEqWn66Kg==}
 
   string-width@1.0.2:
     resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
@@ -5415,6 +5421,8 @@ snapshots:
   streamsearch@1.1.0: {}
 
   strict-uri-encode@2.0.0: {}
+
+  string-optimiser@1.0.5: {}
 
   string-width@1.0.2:
     dependencies:

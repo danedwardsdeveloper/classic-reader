@@ -7,7 +7,7 @@
 		"start": "tsx testServer.ts",
 		"lint": "next lint",
 		"predeploy": "pnpm lint && pnpm check && pnpm format && pnpm build",
-		"deploy": "vercel deploy --prebuilt",
+		"deploy": "vercel build && vercel deploy --prebuilt",
 		"links": "NODE_NO_WARNINGS=1 linkinator http://localhost:3000 --recurse --timeout 20000 --skip \"(https://ko-fi.com/classicreader|danedwardsdeveloper\\.com|https://scripts.simpleanalyticscdn.com/latest.js)\""
 	},
 	"dependencies": {
@@ -39,6 +39,7 @@
 		"linkinator": "^6.1.2",
 		"postcss": "^8.4.48",
 		"schema-dts": "^1.1.5",
+		"string-optimiser": "^1.0.5",
 		"tailwindcss": "^3.4.14",
 		"tsx": "^4.19.2",
 		"typescript": "^5.6.3",
