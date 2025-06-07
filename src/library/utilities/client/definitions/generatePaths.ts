@@ -7,7 +7,6 @@ export function generateWriterPath(writerSlug: WriterSlug) {
 }
 
 export function generateNovelPath(novelData: Novel): string {
-	// Leading slash is essential for Link behaviour
 	return urlJoin('/writers', novelData.writerSlug, 'novels', novelData.titleSlug)
 }
 
