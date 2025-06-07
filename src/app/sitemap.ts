@@ -1,12 +1,15 @@
-import { sitePaths } from '@/library/constants'
+import { sitePaths, writers } from '@/library/constants'
 import { siteSocialImage } from '@/library/data/images'
 import { dynamicBaseURL } from '@/library/environment'
+import { generateChapterParam } from '@/library/utilities/client/definitions/generatePaths'
+import { getAllNovels } from '@/library/utilities/server'
 import type { SitemapEntry } from '@/types'
 import type { MetadataRoute } from 'next'
 import urlJoin from 'url-join'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const now = new Date()
+	const allNovels = await getAllNovels()
 
 	const homepage: SitemapEntry[] = [
 		{
@@ -27,24 +30,57 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.9,
 		}))
 
-	const articleEntries: SitemapEntry[] = Object.values(allArticlesData).map((article) => ({
-		url: `${dynamicBaseURL}/articles/${article.slug}`,
-		lastModified: article.updatedAt || article.publishedAt,
-		changeFrequency: 'weekly',
+	const writerEntries: SitemapEntry[] = Object.keys(writers).map((writerSlug) => ({
+		url: urlJoin(dynamicBaseURL, 'writers', writerSlug),
+		lastModified: now,
+		changeFrequency: 'monthly',
 		priority: 0.8,
 	}))
 
-	const maxURLs = 50_000
-	const availableArticleSpaces = Math.max(0, maxURLs - otherEntries.length - homepage.length)
+	const novelEntries: SitemapEntry[] = allNovels.map((novel) => ({
+		url: urlJoin(dynamicBaseURL, 'writers', novel.writerSlug, 'novels', novel.titleSlug),
+		lastModified: novel.updated,
+		changeFrequency: 'monthly',
+		priority: 0.7,
+	}))
 
-	const limitedArticleEntries = articleEntries
-		.sort((a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime())
-		.slice(0, availableArticleSpaces)
+	const chapterEntries: SitemapEntry[] = allNovels.flatMap((novel) =>
+		novel.chapters.map((_, zeroIndexedChapter) => ({
+			url: urlJoin(
+				dynamicBaseURL,
+				'writers',
+				novel.writerSlug,
+				'novels',
+				novel.titleSlug,
+				generateChapterParam({
+					novelData: novel,
+					oneIndexedChapterNumber: zeroIndexedChapter + 1,
+				}),
+			),
+			lastModified: novel.updated,
+			changeFrequency: 'yearly',
+			priority: 0.6,
+		})),
+	)
+
+	const maxURLs = 50_000
+
+	const baseEntries = [
+		...homepage, //
+		...otherEntries,
+		...writerEntries,
+		...novelEntries,
+	]
+	const availableChapterSpaces = Math.max(0, maxURLs - baseEntries.length)
+
+	const limitedChapterEntries = chapterEntries.slice(0, availableChapterSpaces)
 
 	const sortedEntries: SitemapEntry[] = [
 		...homepage, //
 		...otherEntries,
-		...limitedArticleEntries,
+		...writerEntries,
+		...novelEntries,
+		...limitedChapterEntries,
 	]
 
 	return sortedEntries
