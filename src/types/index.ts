@@ -1,3 +1,5 @@
 export * from './definitions/logger'
 export * from './definitions/novel'
 export * from './definitions/writers'
+export * from './definitions/sitemap'
+export * from './definitions/dates'
