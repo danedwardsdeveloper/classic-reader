@@ -14,5 +14,6 @@ export interface Novel {
 	titleSlug: NovelSlug
 	writerDisplay: WriterDisplayName
 	writerSlug: WriterSlug
+	updated: Date // for sitemap
 	chapters: Chapter[]
 }

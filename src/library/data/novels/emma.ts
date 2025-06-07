@@ -1,3 +1,5 @@
+import { june } from '@/library/constants/definitions/dates'
+import { createDate } from '@/library/utilities/client/definitions/createDate'
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
@@ -5,6 +7,7 @@ export const novel: Novel = {
 	titleSlug: 'emma',
 	writerDisplay: 'Jane Austen',
 	writerSlug: 'jane-austen',
+	updated: createDate(6, june, 2025),
 	chapters: [
 		{
 			content: [

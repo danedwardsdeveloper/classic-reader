@@ -1,3 +1,5 @@
+import { june } from '@/library/constants'
+import { createDate } from '@/library/utilities/client'
 import type { Novel } from '@/types'
 
 export const novel: Novel = {
@@ -5,6 +7,7 @@ export const novel: Novel = {
 	titleSlug: 'anne-of-avonlea',
 	writerDisplay: 'Lucy Maud Montgomery',
 	writerSlug: 'lucy-maud-montgomery',
+	updated: createDate(6, june, 2025),
 	chapters: [
 		{
 			title: 'An Irate Neighbour',
