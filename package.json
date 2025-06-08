@@ -7,7 +7,7 @@
 		"start": "tsx testServer.ts",
 		"lint": "next lint",
 		"predeploy": "pnpm lint && pnpm check && pnpm format && pnpm build",
-		"deploy": "vercel build && vercel deploy --prebuilt",
+		"deploy": "vercel build && vercel deploy --prebuilt --archive=tgz",
 		"links": "NODE_NO_WARNINGS=1 linkinator http://localhost:3000 --recurse --timeout 20000 --skip \"(https://ko-fi.com/classicreader|danedwardsdeveloper\\.com|https://scripts.simpleanalyticscdn.com/latest.js)\""
 	},
 	"dependencies": {
