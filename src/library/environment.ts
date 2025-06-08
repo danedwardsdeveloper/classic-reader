@@ -12,7 +12,7 @@ export const serverLogLevel: LogLevel = 'level5debug'
 export const browserLogLevel: LogLevel = isDevelopment ? 'level5debug' : 'level0none'
 
 export const metaTitleTemplate = 'ClassicReader.org - Read classic novels online.'
-export const metadataExtensionPhrases = [
+export const _metadataExtensionPhrases = [
 	'ClassicReader.org.',
 	'ClassicReader.org - Read classic novels online.',
 	'Read classic novels online for free at ClassicReader.org.',
