@@ -2,13 +2,12 @@ import BreadCrumbs from '@/components/BreadCrumbs'
 import ChapterNavigation from '@/components/ChapterNavigation'
 import Footer from '@/components/Footer'
 import StructuredData from '@/components/StructuredData'
-import { metadataExtensionPhrases } from '@/library/environment'
 import logger from '@/library/logger'
 import { generateChapterSchema } from '@/library/utilities/client'
 import { generateChapterParam } from '@/library/utilities/client/definitions/generatePaths'
-import { optimiseMetadata } from '@/library/utilities/client/definitions/optimiseMetadata'
 import { getAllNovels, getNovelBySlug } from '@/library/utilities/server'
-import type { Novel } from '@/types'
+import { optimiseDescription, optimiseTitle } from '@/library/utilities/server'
+import type { Chapter, Novel } from '@/types'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -20,22 +19,36 @@ interface ResolvedParams {
 type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
-function renderChapterNames(novel: Novel, page: number): { title: string; metatitle: string; metaDescriptionBase: string; url: string } {
-	const pageIndex = Number(page) - 1
-	const chapterExists = pageIndex >= 0 && pageIndex < novel.chapters.length
-	const chapterName = chapterExists ? novel.chapters[pageIndex].title : null
+function getChapterByIndex(novel: Novel, zeroBasedIndex: number): Chapter | null {
+	return novel.chapters[zeroBasedIndex] || null
+}
 
-	const metatitleStart = chapterName ? `Chapter ${page} | ${chapterName} - ` : `Chapter ${page} - `
-	const metatitleEnd = `${novel.titleDisplay} by ${novel.writerDisplay}`
+function generatePageTitle(chapter: Chapter | null, chapterNumber: number): string {
+	// If chapter has a name, use it. Otherwise fall back to "Chapter X"
+	return chapter?.title || `Chapter ${chapterNumber}`
+}
 
-	const metaDescriptionBase = `Read chapter ${page}${chapterName ? `, ${chapterName}, from` : ' of'} ${novel.titleDisplay} by ${novel.writerDisplay}`
+function generateMetaTitleOptions(chapterNumber: number, chapterName: string | null, novel: Novel): string[] {
+	const baseOptions = [`Chapter ${chapterNumber} | ${novel.titleDisplay}`]
 
-	return {
-		title: chapterName || `Chapter ${page}`,
-		metatitle: `${metatitleStart}${metatitleEnd}`,
-		metaDescriptionBase,
-		url: '',
+	if (chapterName) {
+		baseOptions.unshift(
+			`Chapter ${chapterNumber} | ${chapterName}`,
+			`Chapter ${chapterNumber} | ${chapterName} - ${novel.titleDisplay}`,
+			`Chapter ${chapterNumber} | ${chapterName} - ${novel.titleDisplay} by ${novel.writerDisplay}`,
+		)
 	}
+
+	// Add the full version as fallback
+	baseOptions.push(`Chapter ${chapterNumber} | ${novel.titleDisplay} by ${novel.writerDisplay}`)
+
+	return baseOptions
+}
+
+function generateMetaDescriptionBase(chapterNumber: number, chapterName: string | null, novel: Novel): string {
+	const chapterPart = chapterName ? `chapter ${chapterNumber}, ${chapterName},` : `chapter ${chapterNumber}`
+
+	return `Read ${chapterPart} from ${novel.titleDisplay} by ${novel.writerDisplay}`
 }
 
 export async function generateStaticParams(): StaticParams {
@@ -63,25 +76,31 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 		return { title: 'Chapter not found' }
 	}
 
-	const { metatitle, metaDescriptionBase } = renderChapterNames(novelData, currentChapterNumber)
+	const chapter = getChapterByIndex(novelData, currentChapterNumber - 1)
+	const chapterName = chapter?.title || null
 
-	const optimisedTitle = optimiseMetadata({
-		base: metatitle,
-		extraPhrases: metadataExtensionPhrases,
-		type: 'title',
-		separator: ' | ',
-	})
-
-	const optimisedMetaDescription = optimiseMetadata({
-		base: metaDescriptionBase,
-		extraPhrases: metadataExtensionPhrases,
-		type: 'description',
-		separator: '. ',
-	})
+	const titleOptions = generateMetaTitleOptions(currentChapterNumber, chapterName, novelData)
+	const descriptionBase = generateMetaDescriptionBase(currentChapterNumber, chapterName, novelData)
 
 	return {
-		title: optimisedTitle,
-		description: optimisedMetaDescription,
+		title: optimiseTitle({
+			baseOptions: titleOptions,
+			additionalPhraseOptions: [
+				'full', //
+				'in full',
+				'full text',
+				'read the full text',
+				'read the full text at ClassicReader.org',
+			],
+		}),
+		description: optimiseDescription({
+			base: descriptionBase,
+			additionalPhraseOptions: [
+				'.', //
+				'without ads or distractions.',
+				'without ads or distractions at ClassicReader.org.',
+			],
+		}),
 		alternates: {
 			canonical: `/writers/${writer}/novels/${novelSlug}/${chapterSlug}`,
 		},
@@ -91,15 +110,14 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ChapterPage({ params }: { params: Params }) {
 	const { novel, chapter: chapterSlug } = await params
 	const currentChapterNumber = Number(chapterSlug.split('-')[1])
-	const novelData = await getNovelBySlug(novel)
 
+	const novelData = await getNovelBySlug(novel)
 	if (!novelData) return notFound()
 
 	const zeroIndexedChapter = novelData.chapters[currentChapterNumber - 1]
-
 	if (!zeroIndexedChapter) return notFound()
 
-	const { title } = renderChapterNames(novelData, currentChapterNumber)
+	const title = generatePageTitle(zeroIndexedChapter, currentChapterNumber)
 
 	return (
 		<>
